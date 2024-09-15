@@ -1,0 +1,92 @@
+<!-- Login Form -->
+<div class="container">
+  <div class="d-flex justify-content-center py-4">
+    <div class="row text-center">
+      <div class="col-12">
+        <img
+    class="d-block mx-auto mt-2"
+    src="{{appConfig.baseUrl}}images/Emblem_of_Nepal.svg"
+    alt=""
+    height="70"
+  />
+      </div>
+      <div class="col-12"><h6 class="mb-1" style="font-size: 14px; color: #012970">
+        <b>महालेखा नियन्त्रक कार्यालय</b>
+      </h6></div>
+      <div class="col-12"><h6 class="mb-1" style="font-size: 16px; color: #012970">
+        <b>स्थानीय तह संचितकोष व्यवस्थापन प्रणाली (<span style="color: red;"><b>S</b></span>u<span style="color: red;"><b>TRA</b></span>)</b>
+      </h6></div>
+      <div class="col-12"><h6 class="mb-2" style="font-size: 18px; color: #012970">
+        <b>Revenue Portal</b>
+      </h6></div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card shadow">
+        <div class="card-body mt-3">
+          <form
+            class="row g-3 needs-validation"
+            [formGroup]="loginForm"
+            (ngSubmit)="resetPassword()"
+            novalidate
+          >
+          <div class="mb-4">
+              <label class="form-label">Mobile/Email</label>
+              <input type="text" class="form-control" formControlName="username"
+                [ngClass]="vs.getControlClass(loginForm.controls['username'])"
+              />
+              <div class="col-sm">
+                <button type="button" class="btn btn-primary mt-2" (click)="getPincode()" [disabled]="!pinenable">Get Pin</button>
+              </div>
+              <div class="form-text text-danger">You will get pincode on your registered mobile or email.</div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label">Pin Code</label>
+              <input type="password" class="form-control" formControlName="pincode"
+                [ngClass]="vs.getControlClass(loginForm.controls['pincode'])"
+              />
+              <div
+                [ngClass]="vs.getMessageClass(loginForm.controls['pincode'])"
+              >
+                {{ vs.getMessage(loginForm.controls["pincode"]) }}
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label">New Password</label>
+              <input type="password" class="form-control" formControlName="password" placeholder="8+ chars with 1 uppercase, 1 number, and 1 special char."
+                [ngClass]="vs.getControlClass(loginForm.controls['password'])"
+              />
+              <div
+                [ngClass]="vs.getMessageClass(loginForm.controls['password'])"
+              >
+                {{ vs.getMessage(loginForm.controls["password"]) }}
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label">Re-enter Password</label>
+              <input type="password" class="form-control" formControlName="cpassword"
+                [ngClass]="vs.getControlClass(loginForm.controls['cpassword'])"
+              />
+              <div
+                [ngClass]="vs.getMessageClass(loginForm.controls['cpassword'])"
+              >
+                {{ vs.getMessage(loginForm.controls["cpassword"]) }}
+              </div>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn text-light main-bg">
+                Reset Password
+              </button>
+            </div>
+          </form>
+          <div class="d-grid pt-2">
+            <a class="btn text-light" style="background-color: #dc3545;" href="javascript:void(0)" href="/">
+              Cancel
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

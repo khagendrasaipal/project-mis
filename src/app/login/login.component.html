@@ -1,0 +1,85 @@
+<!-- Login Form -->
+<div class="container">
+  <div class="d-flex justify-content-center py-4" style="margin-bottom: -20px;">
+    <div class="row text-center">
+      <div class="col-12">
+        <!-- <img
+    class="d-block mx-auto mt-2"
+    src="{{appConfig.baseUrl}}images/pams.jpg"
+    alt=""
+    height="100" width="100"
+  /> -->
+      </div>
+      <div class="col-12"><h6 class="mb-1" style="font-size: 14px; color: #012970;margin-top: 40px;">
+        <b>Saipal Technologies</b>
+      </h6></div>
+      <!-- <div class="col-12"><h6 class="mb-1" style="font-size: 16px; color: #012970">
+        <b>स्थानीय तह संचितकोष व्यवस्थापन प्रणाली (<span style="color: red;"><b>S</b></span>u<span style="color: red;"><b>TRA</b></span>)</b>
+      </h6></div> -->
+      <div class="col-12"><h6 class="mb-2" style="font-size: 18px; color: #012970">
+        <b>Project Management System</b>
+      </h6></div>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center mt-5" style="margin-top: -1px;">
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card shadow">
+        <div class="card-body mt-3">
+          <form
+            class="row g-3 needs-validation"
+            [formGroup]="loginForm"
+            (ngSubmit)="login()"
+            novalidate
+          >
+            <div class="mb-4">
+              <label for="username" class="form-label">Username/Mobile</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                formControlName="username"
+                [ngClass]="vs.getControlClass(loginForm.controls['username'])"
+              />
+              <div
+                [ngClass]="vs.getMessageClass(loginForm.controls['username'])"
+              >
+                {{ vs.getMessage(loginForm.controls["username"]) }}
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                [ngClass]="vs.getControlClass(loginForm.controls['password'])"
+              />
+              <div
+                [ngClass]="vs.getMessageClass(loginForm.controls['password'])"
+              >
+                {{ vs.getMessage(loginForm.controls["password"]) }}
+              </div>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn text-light main-bg">
+                Login
+              </button>
+            </div>
+          </form>
+          <!-- <div class="col-12 mt-3">
+            <p class="small mb-0">Forget password? <a routerLink="/forget-password">Click here</a></p>
+            <p class="small mb-0">Don't have account? <a routerLink="/signup">Create an account</a></p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
+  
+</div>
+
+

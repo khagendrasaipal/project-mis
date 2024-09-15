@@ -1,0 +1,1118 @@
+<!-- <div class="pagetitle">
+    <h1>Blank Page</h1>
+    <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+  </div> -->
+
+<div class="text-center">
+  <h5>{{pdetails.name}}</h5>
+  <h3>Project Activity</h3>
+  <!-- <p>{{pdetails.description}}</p> -->
+</div>
+<button class="btn btn-primary" (click)="gotohome()">Home</button>
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row col-md-12">
+            <div class="col-md-5">
+          <h5 class="card-title" style="cursor: pointer;width:180px" (click)="addActivity(0,$event,1);toggleForm(parents,0)" > <i
+              class="bi bi-clipboard-plus" title="Add new Activity" ></i> Add new </h5>
+            </div>
+              <div class="col-md-6" style="margin-top: 10px;">
+                Not Started: <input type="range" name="points" title="Not Started" disabled  min="1" step="1"  class="tgl-on" max="3" value="1">  
+                In Progress: <input type="range" name="points" title="In Progress" disabled  min="1" step="1"  class="tgl-def" max="3" value="2">  
+                Completed: <input type="range" name="points" title="Completed" disabled  min="1" step="1"  class="tgl-off" max="3" value="3"> 
+              </div>
+            </div>
+              
+              <form *ngIf="mainForm">
+
+
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <!-- Activity Name: <input type="text" placeholder="Enter activity name.."><br>
+                       Description: <input type="text" placeholder="Enter descriptions.."><br> -->
+
+                    <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitActDetails()" novalidate>
+                      <div class="row col-md-12">
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Activity Name</label>
+                          <input placeholder="Enter activity name" type="text" class="form-control form-control-sm"
+                            id="activityname" formControlName="activityname"
+                            [ngClass]="vs.getControlClass(otpForm.controls['activityname'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['activityname'])">
+                            {{ vs.getMessage(otpForm.controls["activityname"]) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Description</label>
+                          <input placeholder="Enter description" type="text" class="form-control form-control-sm"
+                            id="description" formControlName="description"
+                            [ngClass]="vs.getControlClass(otpForm.controls['description'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['description'])">
+                            {{ vs.getMessage(otpForm.controls["description"]) }}
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <label class="form-label req">Activity Order</label>
+                          <div class="has-validation">
+                            <input type="number" class="form-control " formControlName="activityorder" [ngClass]="vs.getControlClass(otpForm.controls['activityorder'])">
+                              
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['activityorder'])">
+                              {{ vs.getMessage(otpForm.controls["activityorder"]) }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Start Date </label>
+                          <input type="date" class="form-control form-control-sm" id="startdate"
+                            formControlName="startdate" [ngClass]="vs.getControlClass(otpForm.controls['startdate'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['startdate'])">
+                            {{ vs.getMessage(otpForm.controls["startdate"]) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">End Date </label>
+                          <input type="date" class="form-control form-control-sm" id="enddate" formControlName="enddate"
+                            [ngClass]="vs.getControlClass(otpForm.controls['enddate'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['enddate'])">
+                            {{ vs.getMessage(otpForm.controls["enddate"]) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Assign by</label>
+                          <select class="form-control form-control-sm" id="assignby" formControlName="assignby"
+                            [ngClass]="vs.getControlClass(otpForm.controls['assignby'])">
+                            <option value="">Select one</option>
+                            <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                          </select>
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['assignby'])">
+                            {{ vs.getMessage(otpForm.controls["assignby"]) }}
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Assign to</label>
+                          <ng-select class="form-control form-control-sm" [items]="staffs" formControlName="assignto"  (change)="onItemSelectT($event)"
+                          bindLabel="name"
+                          [groupBy]="groupingHelper"
+                          [multiple]="true"
+                          [compareWith]="compareFn"
+                          [(ngModel)]="selectedItemsT">
+                       </ng-select>
+                          <!-- <select class="form-control form-control-sm" id="assignto" formControlName="assignto"
+                            [ngClass]="vs.getControlClass(otpForm.controls['assignto'])">
+                            <option value="">Select one</option>
+                            <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                          </select> -->
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['assignto'])">
+                            {{ vs.getMessage(otpForm.controls["assignto"]) }}
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Project Stage</label>
+                          <select class="form-control form-control-sm" id="stageid" formControlName="stageid"
+                            [ngClass]="vs.getControlClass(otpForm.controls['stageid'])">
+                            <option value="">Select one</option>
+                            <option *ngFor=" let item of stages " [value]="item.id">{{item.name}} </option>
+                          </select>
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['stageid'])">
+                            {{ vs.getMessage(otpForm.controls["stageid"]) }}
+                          </div>
+                        </div>
+                        <div class="col-6" >
+                          <label class="form-label req">Applies To</label>
+                          <div class="has-validation">
+                            <select class="form-control form-control-sm" formControlName="appliesto" [ngClass]="vs.getControlClass(otpForm.controls['appliesto'])">
+                              <option value="1">Own Project</option>
+                              <option value="2">Child</option>
+                              <option value="3">Both</option>
+                              </select>
+                              
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['appliesto'])">
+                              {{ vs.getMessage(otpForm.controls["appliesto"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6" >
+                          <label class="form-label req">Dependency</label>
+                          <div class="has-validation">
+                            <select class="form-control form-control-sm" #dep (change)="dependencyCheck(dep.value)" formControlName="dependency" [ngClass]="vs.getControlClass(otpForm.controls['dependency'])">
+                              <option value="1">No</option>
+                              <option value="2">Yes</option>
+                              <!-- <option value="3">Dependent</option> -->
+                              </select>
+                              
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['dependency'])">
+                              {{ vs.getMessage(otpForm.controls["dependency"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+                       
+
+                        <div class="col-12 custom-dropdown" *ngIf="isdep">
+                          <div class="dropdown-toggle col-12" (click)="toggleDropdowns()">
+                            {{ updateSelectedText() }}
+                          </div>
+                         
+                          <div class="col-12 dropdown-menu" [ngClass]="{ 'show': dropdownVisible }">
+                            <span style="float:right"><button
+                              class="btn btn-danger btn-sm"
+                              type="button"
+                              (click)="resetForms()"
+                            >
+                            Clear All Selection
+                            </button></span>
+                            <div class="dropdown-item" *ngFor="let option of depacts" [attr.data-value]="option.id">
+                              {{ option.name | titlecase }}
+                              <div class="radio-group">
+                                <label>
+                                  <input type="radio" name="{{ option.name }}" value="2" (change)="onRadioChange(option.id, 2)"> Partial Dependency
+                                </label>
+                                <label>
+                                  <input type="radio" name="{{ option.name }}" value="3" (change)="onRadioChange(option.id, 3)"> Full Dependency
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6">
+                          <label class="form-label req">Status</label>
+                          <div class="has-validation">
+                            <select class="form-control form-control-sm" formControlName="status"
+                              [ngClass]="vs.getControlClass(otpForm.controls['status'])">
+                              <option value="1">Not started</option>
+                              <option value="2">In Progress</option>
+                              <option value="3">Completed</option>
+                            </select>
+
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['status'])">
+                              {{ vs.getMessage(otpForm.controls["status"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-12"></div>
+                      </div>
+                      <button class="btn btn-success btn-sm col-2" type="submit">Submit</button>
+                    </form>
+                  </div>
+                </div>
+
+
+
+                <!-- Your form fields here -->
+              </form>
+          <!-- <p style="font-weight: bolder;" *ngFor=" let item of parents">{{item.name}} &nbsp;&nbsp;&nbsp;<i title="Add new sub activity" class=" btn btn-sm btn-primary bi bi-plus-lg"></i>
+              <li *ngFor=" let items of item.children">
+                  {{items.name}}
+              </li> -->
+
+
+
+
+
+
+
+          <ul>
+            <ng-container *ngFor="let item of parents">
+              <li class="myDIV" style="cursor: pointer;" (mouseenter)="toggleBtn(item)">
+                <div class="row col-md-12">
+               
+              <div class="col-md-8">
+                <!-- <input title="Complete activity" type="checkbox" (click)="completeTask(item.id,$event)" [checked]="item.status === 3"> -->
+                 {{ item.name }} 
+               <!-- <span *ngIf="item.status==1">Ongoing</span>  -->
+               <span *ngIf="item.showIcon" class="hide"><button type="button" title="Add new Activity" class="btn  btn-sm" (click)="addActivity(item.id,$event,item.main);toggleForm(item,item.id)"><i
+                  class="bi bi-plus-circle" ></i> </button>  
+                  <!-- <ngx-slider style="width:30% !important;margin-left: 40px;" (click)="changeRange(value)" [(value)]="value" [options]="options"></ngx-slider> -->
+                </span>
+                </div>
+
+                <div class="col-md-1" *ngIf="item.assign==0">
+                  <div *ngIf="item.status==1" class="wrapper">
+                    <div class="circle" style="background-color: red;" title="Not Started"></div>
+                   
+                  </div>
+
+                  <div *ngIf="item.status==2" class="wrapper">
+                    <div class="circle" style="background-color: orange;" title="In Progress"></div>
+                    
+                  </div>
+
+                  <div *ngIf="item.status==3" class="wrapper">
+                    <div class="circle" style="background-color: green;" title="Completed"></div>
+                  
+                  </div>
+                  
+                </div>
+
+                <div class="col-md-1" *ngIf="item.assign!=0">
+                  <div *ngIf="item.status==1" class="wrapper">
+                    <input  type="range" name="points" title="Not Started" #rp (change)="filterme(rp.value,item.id,item.main);" min="1" step="1" id="custom-toggle{{item.id}}" class="tgl-on" max="3" value="{{item.status}}">
+                   
+                  </div>
+
+                  <div *ngIf="item.status==2" class="wrapper">
+                    <input type="range" name="points" title="In Progress" #rp (change)="filterme(rp.value,item.id,item.main);" min="1" step="1" id="custom-toggle{{item.id}}" class="tgl-def" max="3" value="{{item.status}}">
+                    
+                  </div>
+
+                  <div *ngIf="item.status==3" class="wrapper">
+                    <input  type="range" name="points" #rp  title="Completed" (change)="filterme(rp.value,item.id,item.main);" min="1" step="1" id="custom-toggle{{item.id}}" class="tgl-off" max="3" value="{{item.status}}">
+                  
+                  </div>
+                 
+                </div>
+
+                <div class="col-md-1 icon-container" >
+                  <span (click)="composeMsg(item.id,item.projectid)">
+                  <i class="bi bi-messenger" style="margin-right: -5px;" ></i>
+                  <span class="badge" *ngIf="item.msg>0">{{item.msg}}</span></span>
+              </div>
+              </div>
+              </li>
+             
+             
+              <form *ngIf="item.showForm">
+
+
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <!-- Activity Name: <input type="text" placeholder="Enter activity name.."><br>
+                       Description: <input type="text" placeholder="Enter descriptions.."><br> -->
+
+                    <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitActDetails()" novalidate>
+                      <div class="row col-md-12">
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Activity Name</label>
+                          <input placeholder="Enter activity name" type="text" class="form-control form-control-sm"
+                            id="activityname" formControlName="activityname"
+                            [ngClass]="vs.getControlClass(otpForm.controls['activityname'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['activityname'])">
+                            {{ vs.getMessage(otpForm.controls["activityname"]) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Description</label>
+                          <input placeholder="Enter description" type="text" class="form-control form-control-sm"
+                            id="description" formControlName="description"
+                            [ngClass]="vs.getControlClass(otpForm.controls['description'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['description'])">
+                            {{ vs.getMessage(otpForm.controls["description"]) }}
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <label class="form-label req">Activity Order</label>
+                          <div class="has-validation">
+                            <input type="number" class="form-control " formControlName="activityorder" [ngClass]="vs.getControlClass(otpForm.controls['activityorder'])">
+                              
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['activityorder'])">
+                              {{ vs.getMessage(otpForm.controls["activityorder"]) }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Start Date </label>
+                          <input type="date" class="form-control form-control-sm" id="startdate"
+                            formControlName="startdate" [ngClass]="vs.getControlClass(otpForm.controls['startdate'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['startdate'])">
+                            {{ vs.getMessage(otpForm.controls["startdate"]) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">End Date </label>
+                          <input type="date" class="form-control form-control-sm" id="enddate" formControlName="enddate"
+                            [ngClass]="vs.getControlClass(otpForm.controls['enddate'])">
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['enddate'])">
+                            {{ vs.getMessage(otpForm.controls["enddate"]) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Assign by</label>
+                          <select class="form-control form-control-sm" id="assignby" formControlName="assignby"
+                            [ngClass]="vs.getControlClass(otpForm.controls['assignby'])">
+                            <option value="">Select one</option>
+                            <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                          </select>
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['assignby'])">
+                            {{ vs.getMessage(otpForm.controls["assignby"]) }}
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Assign to</label>
+                          <!-- <select class="form-control form-control-sm" id="assignto" formControlName="assignto"
+                            [ngClass]="vs.getControlClass(otpForm.controls['assignto'])">
+                            <option value="">Select one</option>
+                            <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                          </select> -->
+                          <ng-select [items]="staffs" class="form-control form-control-sm" formControlName="assignto"  (change)="onItemSelectT($event)"
+                          bindLabel="name"
+                          bindValue="id"
+                          [groupBy]="groupingHelper"
+                          [multiple]="true"
+                          [compareWith]="compareFn"
+                          [(ngModel)]="selectedItemsT">
+                       </ng-select>
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['assignto'])">
+                            {{ vs.getMessage(otpForm.controls["assignto"]) }}
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Project Stage</label>
+                          <select class="form-control form-control-sm" id="stageid" formControlName="stageid"
+                            [ngClass]="vs.getControlClass(otpForm.controls['stageid'])">
+                            <option value="">Select one</option>
+                            <option *ngFor=" let item of stages " [value]="item.id">{{item.name}} </option>
+                          </select>
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['stageid'])">
+                            {{ vs.getMessage(otpForm.controls["stageid"]) }}
+                          </div>
+                        </div>
+
+                        <div class="col-6" >
+                          <label class="form-label req">Applies To</label>
+                          <div class="has-validation">
+                            <select class="form-control form-control-sm" formControlName="appliesto" [ngClass]="vs.getControlClass(otpForm.controls['appliesto'])">
+                              <option value="1">Own Project</option>
+                              <option value="2">Child</option>
+                              <option value="3">Both</option>
+                              </select>
+                              
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['appliesto'])">
+                              {{ vs.getMessage(otpForm.controls["appliesto"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+                        
+
+                        <div class="col-6" >
+                          <label class="form-label req">Dependency</label>
+                          <div class="has-validation">
+                            <select class="form-control form-control-sm" #dep (change)="dependencyCheck(dep.value)" formControlName="dependency" [ngClass]="vs.getControlClass(otpForm.controls['dependency'])">
+                              <option value="1">No</option>
+                              <option value="2">Yes</option>
+                              <!-- <option value="3">Dependent</option> -->
+                              </select>
+                              
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['dependency'])">
+                              {{ vs.getMessage(otpForm.controls["dependency"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+                       
+
+                        <div class="col-12 custom-dropdown" *ngIf="isdep">
+                          <div class="dropdown-toggle col-12" (click)="toggleDropdowns()">
+                            {{ updateSelectedText() }}
+                          </div>
+                         
+                          <div class="col-12 dropdown-menu" [ngClass]="{ 'show': dropdownVisible }">
+                            <span style="float:right"><button
+                              class="btn btn-danger btn-sm"
+                              type="button"
+                              (click)="resetForms()"
+                            >
+                            Clear All Selection
+                            </button></span>
+                            <div class="dropdown-item" *ngFor="let option of depacts" [attr.data-value]="option.id">
+                              {{ option.name | titlecase }}
+                              <div class="radio-group">
+                                <label>
+                                  <input type="radio" name="{{ option.name }}" value="2" (change)="onRadioChange(option.id, 2)"> Partial Dependency
+                                </label>
+                                <label>
+                                  <input type="radio" name="{{ option.name }}" value="3" (change)="onRadioChange(option.id, 3)"> Full Dependency
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6">
+                          <label class="form-label req">Status</label>
+                          <div class="has-validation">
+                            <select class="form-control form-control-sm" formControlName="status"
+                              [ngClass]="vs.getControlClass(otpForm.controls['status'])">
+                              <option value="1">Not started</option>
+                              <option value="2">In Progress</option>
+                              <option value="3">Completed</option>
+                            </select>
+
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['status'])">
+                              {{ vs.getMessage(otpForm.controls["status"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-12"></div>
+                      </div>
+                      <button class="btn btn-success btn-sm col-2" type="submit">Submit</button>
+                    </form>
+                  </div>
+                </div>
+
+
+
+                <!-- Your form fields here -->
+              </form>
+              <ul *ngIf="item.children && item.children.length > 0">
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+              </ul>
+            </ng-container>
+          </ul>
+
+          <ng-template #recursiveList let-items>
+            <ng-container *ngFor="let item of items">
+              <!-- <li class="litem"> <input type="checkbox" [checked]="item.status === 3" (click)="completeTask(item.id,$event)">  {{ item.name }}
+                 <button    
+                type="button" title="Add new activity" class="btn hover-button " (click)="addActivity(item.id,$event);toggleForm(item,item.id)"><i
+                class="bi bi-plus-circle" ></i> </button>
+              </li>  -->
+              <li style="cursor: pointer;" class="myDIV" (mouseenter)="toggleBtn(item)">
+              <!-- <span>  <ngx-slider [(value)]="value" [options]="options"></ngx-slider></span> -->
+                <!-- <input type="range" class="form-range col-md-2" min="1" max="3" step="1" id="customRange3"> -->
+                <!-- <input title="Complete activity" type="checkbox" (click)="completeTask(item.id,$event)" [checked]="item.status === 3"> -->
+                <div class="row col-md-12">
+               
+              <div class="col-md-8">
+                {{ item.name }} 
+                <span *ngIf="item.showIcon" class="hide">
+                  <button type="button" title="Add new Activity" class="btn  " (click)="addActivity(item.id,$event,item.main);toggleForm(item,item.id)">
+                    <i class="bi bi-plus-circle" ></i> 
+                   
+                  </button>
+                </span>
+                  </div>
+
+                  <div class="col-md-1" *ngIf="item.assign==0">
+                    <div *ngIf="item.status==1" class="wrapper">
+                      <div class="circle" style="background-color: red;margin-left: -10px;" title="Not Started"></div>
+                     
+                    </div>
+  
+                    <div *ngIf="item.status==2" class="wrapper">
+                      <div class="circle" style="background-color: orange;margin-left: -10px;" title="In Progress"></div>
+                      
+                    </div>
+  
+                    <div *ngIf="item.status==3" class="wrapper">
+                      <div class="circle" style="background-color: green;margin-left: -10px;" title="Completed"></div>
+                    
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-1" *ngIf="item.assign!=0">
+                    <div *ngIf="item.status==1" class="wrapper">
+                      <input type="range" style="margin-left: -10px;" name="points" #rp title="Not Started" (change)="filterme(rp.value,item.id,item.main);" min="1" step="1" id="custom-toggle{{item.id}}" class="tgl-on" max="3" value="{{item.status}}">
+                      <!-- <span style="margin-left: 10px;" id="stext{{item.id}}">Not Started </span> -->
+                    </div>
+  
+                    <div *ngIf="item.status==2" class="wrapper">
+                      <input type="range" style="margin-left: -10px;" name="points" #rp title="In Progress" (change)="filterme(rp.value,item.id,item.main);" min="1" step="1" id="custom-toggle{{item.id}}" class="tgl-def" max="3" value="{{item.status}}">
+                      <!-- <span style="margin-left: 10px;" id="stext{{item.id}}">In Progress </span> -->
+                    </div>
+  
+                    <div *ngIf="item.status==3" class="wrapper">
+                      <input type="range" style="margin-left: -10px;" name="points" #rp title="Completed" (change)="filterme(rp.value,item.id,item.main);" min="1" step="1" id="custom-toggle{{item.id}}" class="tgl-off" max="3" value="{{item.status}}">
+                      <!-- <span style="margin-left: 10px;" id="stext{{item.id}}">Completed </span> -->
+                    </div>
+                   
+                  </div>
+
+                  <div  class="col-md-1 icon-container" (click)="composeMsg(item.id,item.projectid)">
+                    <i class="bi bi-messenger" style="margin-right: -5px;margin-left: -10px;"></i>
+                    <span class="badge" *ngIf="item.msg>0">{{item.msg}}</span>
+                </div>
+
+                  </div>
+              </li>
+            
+              <form *ngIf="item.showForm">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <!-- Activity Name: <input type="text" placeholder="Enter activity name.."><br>
+                       Description: <input type="text" placeholder="Enter descriptions.."><br> -->
+
+                       <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitActDetails()" novalidate>
+                        <div class="row col-md-12">
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">Activity Name</label>
+                            <input placeholder="Enter activity name" type="text" class="form-control form-control-sm"
+                              id="activityname" formControlName="activityname"
+                              [ngClass]="vs.getControlClass(otpForm.controls['activityname'])">
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['activityname'])">
+                              {{ vs.getMessage(otpForm.controls["activityname"]) }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">Description</label>
+                            <input placeholder="Enter description" type="text" class="form-control form-control-sm"
+                              id="description" formControlName="description"
+                              [ngClass]="vs.getControlClass(otpForm.controls['description'])">
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['description'])">
+                              {{ vs.getMessage(otpForm.controls["description"]) }}
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <label class="form-label req">Activity Order</label>
+                            <div class="has-validation">
+                              <input type="number" class="form-control " formControlName="activityorder" [ngClass]="vs.getControlClass(otpForm.controls['activityorder'])">
+                                
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['activityorder'])">
+                                {{ vs.getMessage(otpForm.controls["activityorder"]) }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">Start Date </label>
+                            <input type="date" class="form-control form-control-sm" id="startdate"
+                              formControlName="startdate" [ngClass]="vs.getControlClass(otpForm.controls['startdate'])">
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['startdate'])">
+                              {{ vs.getMessage(otpForm.controls["startdate"]) }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">End Date </label>
+                            <input type="date" class="form-control form-control-sm" id="enddate" formControlName="enddate"
+                              [ngClass]="vs.getControlClass(otpForm.controls['enddate'])">
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['enddate'])">
+                              {{ vs.getMessage(otpForm.controls["enddate"]) }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">Assign by</label>
+                            <select class="form-control form-control-sm" id="assignby" formControlName="assignby"
+                              [ngClass]="vs.getControlClass(otpForm.controls['assignby'])">
+                              <option value="">Select one</option>
+                              <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                            </select>
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['assignby'])">
+                              {{ vs.getMessage(otpForm.controls["assignby"]) }}
+                            </div>
+                          </div>
+  
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">Assign to</label>
+                            <!-- <select class="form-control form-control-sm" id="assignto" formControlName="assignto"
+                              [ngClass]="vs.getControlClass(otpForm.controls['assignto'])">
+                              <option value="">Select one</option>
+                              <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                            </select> -->
+                            <ng-select [items]="staffs" formControlName="assignto" class="form-control form-control-sm"  (change)="onItemSelectT($event)"
+                            bindLabel="name"
+                            bindValue="id"
+                            [groupBy]="groupingHelper"
+                            [multiple]="true"
+                            [compareWith]="compareFn"
+                            [(ngModel)]="selectedItemsT">
+                         </ng-select>
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['assignto'])">
+                              {{ vs.getMessage(otpForm.controls["assignto"]) }}
+                            </div>
+                          </div>
+  
+                          <div class="col-md-6">
+                            <label for="otp" class="form-label">Project Stage</label>
+                            <select class="form-control form-control-sm" id="stageid" formControlName="stageid"
+                              [ngClass]="vs.getControlClass(otpForm.controls['stageid'])">
+                              <option value="">Select one</option>
+                              <option *ngFor=" let item of stages " [value]="item.id">{{item.name}} </option>
+                            </select>
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['stageid'])">
+                              {{ vs.getMessage(otpForm.controls["stageid"]) }}
+                            </div>
+                          </div>
+
+                          <!-- <div class="col-6" >
+                            <label class="form-label req">Applies To</label>
+                            <div class="has-validation">
+                              <select class="form-control form-select" formControlName="appliesto" >
+                                <option value="1">Own Project</option>
+                                <option value="2">Child</option>
+                                <option value="3">Both</option>
+                                </select>
+                                
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['appliesto'])">
+                                {{ vs.getMessage(otpForm.controls["appliesto"]) }}
+                              </div>
+                            </div>
+                          </div> -->
+                          
+                          <div class="col-6">
+                            <label class="form-label req">Applies to</label>
+                            <div class="has-validation">
+                              <select class="form-control form-control-sm" formControlName="appliesto"
+                                [ngClass]="vs.getControlClass(otpForm.controls['appliesto'])">
+                                <option value="1">Own Project</option>
+                                <option value="2">Child</option>
+                                <option value="3">Both</option>
+                              </select>
+  
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['appliesto'])">
+                                {{ vs.getMessage(otpForm.controls["appliesto"]) }}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-6" >
+                            <label class="form-label req">Dependency</label>
+                            <div class="has-validation">
+                              <select class="form-control form-control-sm" #dep (change)="dependencyCheck(dep.value)" formControlName="dependency" [ngClass]="vs.getControlClass(otpForm.controls['dependency'])">
+                                <option value="1">No</option>
+                                <option value="2">Yes</option>
+                                <!-- <option value="3">Dependent</option> -->
+                                </select>
+                                
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['dependency'])">
+                                {{ vs.getMessage(otpForm.controls["dependency"]) }}
+                              </div>
+                            </div>
+                          </div>
+  
+                         
+
+                          <div class="col-12 custom-dropdown" *ngIf="isdep">
+                            <div class="dropdown-toggle col-12" (click)="toggleDropdowns()">
+                              {{ updateSelectedText() }}
+                            </div>
+                           
+                            <div class="col-12 dropdown-menu" [ngClass]="{ 'show': dropdownVisible }">
+                              <span style="float:right"><button
+                                class="btn btn-danger btn-sm"
+                                type="button"
+                                (click)="resetForms()"
+                              >
+                              Clear All Selection
+                              </button></span>
+                              <div class="dropdown-item" *ngFor="let option of depacts" [attr.data-value]="option.id">
+                                {{ option.name | titlecase }}
+                                <div class="radio-group">
+                                  <label>
+                                    <input type="radio" name="{{ option.name }}" value="2" (change)="onRadioChange(option.id, 2)"> Partial Dependency
+                                  </label>
+                                  <label>
+                                    <input type="radio" name="{{ option.name }}" value="3" (change)="onRadioChange(option.id, 3)"> Full Dependency
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <div class="col-6">
+                            <label class="form-label req">Status</label>
+                            <div class="has-validation">
+                              <select class="form-control form-control-sm" formControlName="status"
+                                [ngClass]="vs.getControlClass(otpForm.controls['status'])">
+                                <option value="1">Not started</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Completed</option>
+                              </select>
+  
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['status'])">
+                                {{ vs.getMessage(otpForm.controls["status"]) }}
+                              </div>
+                            </div>
+                          </div>
+  
+                        </div>
+                        <div class="row">
+                          <div class="col-12"></div>
+                        </div>
+                        <button class="btn btn-success btn-sm col-2" type="submit">Submit</button>
+                      </form>
+                  </div>
+                </div>
+                <!-- Your form fields here -->
+              </form>
+              <ul *ngIf="item.children && item.children.length > 0">
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+              </ul>
+            </ng-container>
+          </ng-template>
+          <!-- </p> -->
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</section>
+
+<ng-template #template1>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">  <i style="cursor: pointer;" (click)="toggleForms(msgs,0,act)" class="bi bi-pen"  title="Add new Message"> Compose Message</i></h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <!-- <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitOtp()" novalidate> -->
+<div class="mb-4">
+
+  
+  <ul>
+    <nav *ngFor=" let item of messages" style="--bs-breadcrumb-divider: '>';">
+      <!-- <ul class="breadcrumb" style="font-weight: bolder;font-size: 18px;">
+        <li style=" list-style-type: disc" class="breadcrumb-item"><a >{{item.created_at}}</a></li>
+        <li class="breadcrumb-item"><a >{{item.fullname}}</a></li>
+        <li class="breadcrumb-item active" style="font-weight: bolder;">{{item.name}} 
+         
+          
+                      
+      </ul> -->
+
+      <div class="chat-message-left pb-4"><div style="margin-right:5px"> 
+        <div class="avatar">{{ getInitial(item.fullname) }}</div>
+        <!-- <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40"> -->
+        <div class="text-muted small text-nowrap mt-2">{{item.created_at}}</div></div><div style="background-color: #e8e9ea !important;  " class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+          <div style="font-weight:bold;color:black" class="font-weight-bold mb-1">{{item.fullname}}</div> {{item.name}}  <i title="Reply" style="cursor: pointer;" (click)="toggleForms(item,item.id,item.activityid)" class="bi bi-reply-fill"></i> 
+          <div *ngIf="item.files"><span title="View file" *ngFor="let itm of item.files"><li style="list-style-type: none;"><a target="_blank" href="{{baseurl}}{{itm.path}}"><i class="bi bi-file-earmark-pdf"></i>{{itm.filename}}</a></li> </span></div>
+        </div></div>
+
+
+
+      <!-- <div class="p-3">
+        <div class="mb-3 d-flex align-items-center">
+          <div class="avatar">{{ getInitial(item.fullname) }}</div>
+     
+          <div class="ms-2">
+            <h6 class="mb-0" style="font-weight: bold">{{item.fullname}}</h6>
+            <span class="text-muted">{{item.created_at}}</span>
+          </div>
+          
+        </div>
+        <div class="row col-md-12">
+        <div class="col-md-10">
+          {{item.name}} 
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-info btn-sm" (click)="toggleForms(item,item.id,item.activityid)">
+            <i class="bi bi-reply-fill"></i> Reply
+          </button>
+         
+        </div>
+        </div>
+      </div> -->
+
+      <form *ngIf="item.showForms">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            
+               <form class="row g-3 needs-validation" [formGroup]="otpForms" (ngSubmit)="submitmsg()" novalidate>
+                <div class="row col-md-12">
+                  <div class="col-md-6">
+                    <label for="otp" class="form-label">Compose Message</label>
+                    <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForms.controls['content'])"></textarea>
+                    <div [ngClass]="vs.getMessageClass(otpForms.controls['content'])">
+                        {{ vs.getMessage(otpForms.controls["content"]) }}
+                    </div>
+                  </div>
+
+                  <div class="custom-file-upload">
+                    <label for="mfile">
+                        <i class="bi bi-paperclip" aria-hidden="true"></i>
+                        Attach File
+                    </label>
+                    <li *ngFor="let item of disfile;let i = index"> {{item}}  <span (click)="removeFile(i)" ><i class="bi bi-trash3"></i></span></li>
+                    <input style="display: none;" formControlName="mfile" type="file" name="mfile" id="mfile" (change)="handleFileInput($event)" />
+                </div>
+    
+                  
+    
+    
+                  </div>
+                  <button class="btn btn-success btn-sm col-1" type="submit">Send</button>
+                  </form>
+                  </div>
+                  </div>
+                  </form>
+
+      <ul *ngIf="item.children && item.children.length > 0">
+        <nav *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></nav>
+      </ul>
+    </nav>
+  </ul>
+  
+  <ng-template #recursiveList let-items>
+    <nav *ngFor="let item of items" style="--bs-breadcrumb-divider: '>';">
+      <!-- <ol class="breadcrumb" style="font-weight: bolder;font-size: 18px;">
+        <li style=" list-style-type: circle" class="breadcrumb-item"><a >{{item.created_at}}</a></li>
+        <li class="breadcrumb-item"><a >{{item.fullname}}</a></li>
+        <li class="breadcrumb-item active" style="font-weight: bolder;">{{item.name}}  -->
+           <!-- <i style="cursor: pointer;color: #03a9f4;" (click)="sendReply(item.id,item.activityid)" class="bi bi-reply" title="Add Reply">reply</i></li> -->
+      <!-- </ol> -->
+      <!-- <div class="chat-message-left pb-4"><div> 
+        <div class="avatar">{{ getInitial(item.fullname) }}</div>
+       
+        <div class="text-muted small text-nowrap mt-2">{{item.created_at}}</div></div><div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+          <div style="font-weight:bold" class="font-weight-bold mb-1">{{item.fullname}}</div> {{item.name}}</div></div> -->
+
+          <div class="chat-message-right mb-4"><div style="margin-left:5px"> 
+            <div class="avatar">{{ getInitial(item.fullname) }}</div>
+            <div class="text-muted small text-nowrap mt-2">{{item.created_at}}</div></div><div style="background-color: #e8e9ea !important;  " class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+              <div class="font-weight-bold mb-1" style="font-weight: bold;color:black">{{item.fullname}}</div> {{item.name}}  <i title="Reply" style="cursor:pointer" (click)="toggleForms(item,item.id,item.activityid)" class="bi bi-reply-fill"></i>
+              <div *ngIf="item.files"><span title="View file" *ngFor="let itm of item.files"><li style="list-style-type: none;"><a target="_blank" href="{{baseurl}}{{itm.path}}"><i class="bi bi-file-earmark-pdf"> </i> {{itm.filename}}</a></li></span><br></div>
+            </div></div>
+
+            
+      <!-- <div class="p-3">
+        <div class="mb-3 d-flex align-items-center">
+          <div class="avatar">{{ getInitial(item.fullname) }}</div>
+       
+          <div class="ms-2">
+            <h6 class="mb-0" style="font-weight: bold">{{item.fullname}}</h6>
+            <span class="text-muted">{{item.created_at}}</span>
+          </div>
+        </div>
+        <div class="row col-md-12">
+        <div class="col-md-10">
+          {{item.name}} 
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-info btn-sm" (click)="toggleForms(item,item.id,item.activityid)">
+            <i class="bi bi-reply-fill"></i> Reply
+          </button>
+          
+        </div>
+        </div>
+      </div> -->
+
+      <form *ngIf="item.showForms">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            
+               <form class="row g-3 needs-validation" [formGroup]="otpForms" (ngSubmit)="submitmsg()" novalidate>
+                <div class="row col-md-12">
+                  <div class="col-md-6">
+                    <label for="otp" class="form-label">Compose Message</label>
+                    <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForms.controls['content'])"></textarea>
+                    <div [ngClass]="vs.getMessageClass(otpForms.controls['content'])">
+                        {{ vs.getMessage(otpForms.controls["content"]) }}
+                    </div>
+                  </div>
+
+                  <div class="custom-file-upload">
+                    <label for="mfile">
+                        <i class="bi bi-paperclip" aria-hidden="true"></i>
+                        Attach File
+                    </label>
+                    <li *ngFor="let item of disfile;let i = index"> {{item}}  <span (click)="removeFile(i)" ><i class="bi bi-trash3"></i></span></li>
+                    <input style="display: none;" formControlName="mfile" type="file" name="mfile" id="mfile" (change)="handleFileInput($event)" />
+                </div>
+    
+                  
+    
+    
+                  </div>
+                  <button class="btn btn-success btn-sm col-1" type="submit">send</button>
+                  </form>
+                  </div>
+                  </div>
+                  </form>
+      <!-- <form >
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            
+               <form class="row g-3 needs-validation" [formGroup]="otpForms" (ngSubmit)="submitmsg()" novalidate>
+                <div class="row col-md-12">
+                  <div class="col-md-6">
+                    <label for="otp" class="form-label">Compose Message</label>
+                    <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForm.controls['content'])"></textarea>
+                    <div [ngClass]="vs.getMessageClass(otpForm.controls['content'])">
+                        {{ vs.getMessage(otpForm.controls["content"]) }}
+                    </div>
+                  </div>
+
+                  
+
+
+                  </div>
+                  <button class="btn btn-success btn-sm col-1" type="submit">Submit</button>
+                  </form>
+                  </div>
+                  </div>
+                  </form> -->
+      <ul *ngIf="item.children && item.children.length > 0">
+        <nav *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></nav>
+      </ul>
+    </nav>
+  </ng-template>
+
+  <form *ngIf="mainForms">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        
+           <form class="row g-3 needs-validation" [formGroup]="otpForms" (ngSubmit)="submitmsg()" novalidate>
+            <div class="row col-md-12">
+              <div class="col-md-6">
+                <label for="otp" class="form-label">Compose Message</label>
+                <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForms.controls['content'])"></textarea>
+                <div [ngClass]="vs.getMessageClass(otpForms.controls['content'])">
+                    {{ vs.getMessage(otpForms.controls["content"]) }}
+                </div>
+              </div>
+              <!-- <input type="hidden" formControlName="isMain" value="1"> -->
+              <!-- <div class="col-md-6"></div><div class="col-md-6"></div> -->
+                <div class="col-md-6">
+                  <label></label>
+              <ng-select  [items]="teams" formControlName="audience"  (change)="onItemSelectTs($event)"
+              bindLabel="name"
+              bindValue="id"
+              placeholder="Audience"
+              [groupBy]="groupingHelpers"
+              [multiple]="true"
+              [compareWith]="compareFns"
+              [(ngModel)]="selectedItemsTs">
+           </ng-select>
+
+           
+
+          </div>
+
+          <div class="custom-file-upload">
+            <label for="mfile">
+                <i class="bi bi-paperclip" aria-hidden="true"></i>
+                Attach Files
+                
+            </label>
+            <li *ngFor="let item of disfile;let i = index"> {{item}}  <span (click)="removeFile(i)" ><i class="bi bi-trash3"></i></span></li>
+            <input style="display: none;" formControlName="mfile" type="file" name="mfile" id="mfile" (change)="handleFileInput($event)" />
+        </div>
+
+              <!-- <div class="col-md-6 dropdown" [class.show]="isDropdownOpen">
+                <button type="button" (click)="toggleDropdown($event)" class="dropdown-toggle">
+                  {{ getSelectedItems() }}
+                </button>
+                <div class="dropdown-menu" [class.show]="isDropdownOpen">
+                  <label *ngFor="let item of items" class="dropdown-item" (click)="onItemSelect($event, item)">
+                    <input type="checkbox" formControlName="audience"  (change)="onItemSelectTs($event)"> {{ item.name }}
+                  </label>
+                </div>
+              </div> -->
+
+              
+
+
+              </div>
+              <!-- <button type="button" class="btn btn-secondary ms-2"><i  class="fas fa-share me-1"></i>Send</button> -->
+              <button class="btn btn-success btn-sm col-1" type="submit">Send</button>
+              </form>
+              </div>
+              </div>
+              </form>
+  </div>
+ 
+  <!-- <button class="btn btn-success btn-sm" type="submit">Submit</button> -->
+
+  </div>
+
+
+  
+  
+
+</ng-template>
+
+<!-- <ng-template #template1>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Activity</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitActDetails()" novalidate>
+      <div class="row col-md-12">
+        <div class="col-md-6">
+          <label for="otp" class="form-label">Activity Name</label>
+          <input type="text" class="form-control form-control-sm" id="activityname" formControlName="activityname"
+            [ngClass]="vs.getControlClass(otpForm.controls['activityname'])">
+          <div [ngClass]="vs.getMessageClass(otpForm.controls['activityname'])">
+            {{ vs.getMessage(otpForm.controls["activityname"]) }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="otp" class="form-label">Description</label>
+          <input type="text" class="form-control form-control-sm" id="description" formControlName="description"
+            [ngClass]="vs.getControlClass(otpForm.controls['description'])">
+          <div [ngClass]="vs.getMessageClass(otpForm.controls['description'])">
+            {{ vs.getMessage(otpForm.controls["description"]) }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="otp" class="form-label">Start Date </label>
+          <input type="date" class="form-control form-control-sm" id="startdate" formControlName="startdate"
+            [ngClass]="vs.getControlClass(otpForm.controls['startdate'])">
+          <div [ngClass]="vs.getMessageClass(otpForm.controls['startdate'])">
+            {{ vs.getMessage(otpForm.controls["startdate"]) }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="otp" class="form-label">End Date </label>
+          <input type="date" class="form-control form-control-sm" id="enddate" formControlName="enddate"
+            [ngClass]="vs.getControlClass(otpForm.controls['enddate'])">
+          <div [ngClass]="vs.getMessageClass(otpForm.controls['enddate'])">
+            {{ vs.getMessage(otpForm.controls["enddate"]) }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="otp" class="form-label">Assign by</label>
+          <input type="text" class="form-control form-control-sm" id="assignby" formControlName="assignby"
+            [ngClass]="vs.getControlClass(otpForm.controls['assignby'])">
+          <div [ngClass]="vs.getMessageClass(otpForm.controls['assignby'])">
+            {{ vs.getMessage(otpForm.controls["assignby"]) }}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="otp" class="form-label">Assign to</label>
+          <input type="text" class="form-control form-control-sm" id="assignto" formControlName="assignto"
+            [ngClass]="vs.getControlClass(otpForm.controls['assignto'])">
+          <div [ngClass]="vs.getMessageClass(otpForm.controls['assignto'])">
+            {{ vs.getMessage(otpForm.controls["assignto"]) }}
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-12"></div>
+      </div>
+      <button class="btn btn-success btn-sm " type="submit">Submit</button>
+    </form>
+  </div>
+
+</ng-template> -->

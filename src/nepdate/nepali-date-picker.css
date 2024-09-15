@@ -1,0 +1,255 @@
+
+
+.calinput {
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: default;
+}
+
+.calinput hover {
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: default;
+}
+
+.calinputhover {
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: default;
+}
+
+.calinputclick {
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: default;
+}
+
+#divcalendar {
+    background-color: #E0ECFF;
+    border: double #5C743D;
+}
+
+#divdropdown {
+    background-color: #E0ECFF;
+    border: double #5C743D;
+}
+
+#calendar {
+    padding: 0px;
+}
+
+#calendar th {
+    border-top: 1px #CC9933 solid;
+    border-right: 1px #CC9933 solid;
+    border-left: 1px #CC9933 solid;
+    border-bottom: 1px #CC9933 solid;
+    border-collapse: collapse;
+    color: #000000;
+}
+
+#calendar td {
+    border-top: 1px #CC9933 solid;
+    border-right: 1px #CC9933 solid;
+    border-left: 1px #CC9933 solid;
+    border-bottom: 1px #CC9933 solid;
+    border-collapse: collapse;
+    color: #000000;
+    font-size: 16px;
+}
+
+.day {
+    cursor: default;
+    color: #000000;
+    width: 100%;
+}
+
+.day:Hover {
+    cursor: default;
+    color: #FF0000;
+    width: 100%;
+}
+
+#divcalendar table td {
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.ndp-header#year {
+    -text-indent: 1px;
+    text-overflow: '';
+    width: 70px;
+    border: none !important;
+    margin-top: 7.5px;
+}
+
+.nep-date-active {
+    background-color: blue;
+    color: white !important;
+}
+
+.ndp-header#month {
+    text-indent: 1px;
+    text-overflow: '';
+    margin-top: 7.5px;
+    width: 73px;
+    border: none !important;
+}
+
+div#ndp-nepali-box {
+    font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+    /*width:198px;*/
+    border: 1px solid #A6C9E2;
+    background-color: #FDFEFE;
+    position: absolute;
+    /* z-index: 1; */
+    padding: 1px;
+    margin-top: 1px;
+    text-align: center;
+}
+
+div#ndp-nepali-box td.ndp-date {
+    margin: 1px;
+    padding: 6px 8px;
+    border: 1px solid #7D858D1A;
+    color: #000;
+    cursor: pointer;
+}
+
+div#ndp-nepali-box td.ndp-selected {
+    border: 1px solid #FAD42E;
+    background: #FBEC88;
+    color: #363636
+}
+
+div#ndp-nepali-box td.ndp-current {
+    margin: 1px;
+    padding: 1px 2px;
+    border: 1px solid #79B7E7;
+    background: #F5F8F9;
+}
+
+div#ndp-nepali-box td.ndp-current a {
+    color: #E17009
+}
+
+div#ndp-nepali-box td.ndp-date a {
+    display: block;
+    color: #1C94C4;
+    text-decoration: none;
+    font-size: 12px;
+    width: 20px;
+}
+
+div#ndp-nepali-box td.ndp-date:hover {
+    border: 1px solid #FED22F;
+    opacity: .8
+}
+
+div#ndp-nepali-box td.ndp-date a:hover {
+    color: #1C94C4
+}
+
+div#ndp-nepali-box table {
+    border-collapse: inherit;
+}
+
+div#ndp-nepali-box table,
+div#ndp-nepali-box td,
+div#ndp-nepali-box tr {
+    font-size: 14px;
+    height: 19px;
+    line-height: 19px;
+    margin-top: -5px;
+}
+
+div#ndp-nepali-box a {
+    text-decoration: none
+}
+
+.ndp-days th {
+    text-align: center;
+    font-weight: 700
+}
+
+.ndp-header {
+    background: #FDFEFE;
+    color: black;
+    margin-bottom: 7px;
+    border: 1px solid #4297D7;
+    font-weight: 700;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    margin: 2px;
+    text-align: center
+}
+
+.ndp-prev {
+    left: 7px;
+    position: absolute;
+    top: 6px;
+    width: 1.3em;
+    height: 1.3em;
+    background: no-repeat
+}
+
+.ndp-next:hover {
+    background: 0 #D0E5F5
+}
+
+.ndp-next {
+    right: 7px;
+    position: absolute;
+    top: 6px;
+    width: 1.3em;
+    height: 1.3em;
+    background: 0 no-repeat
+}
+
+#ndp-nepali-box {
+    position: absolute;
+    display: none;
+    z-index: 99999991;
+}
+
+.ndp-corner-all.ndp-header {
+    height: 26px !important;
+}
+
+#currentMonth {
+    vertical-align: top;
+}
+
+table.cal-tbl {
+    height: 20px;
+    vertical-align: top;
+    width: 100%;
+    text-align: justify;
+}
+
+.npd-header {
+    margin-top: -3px !important;
+    width: 70px;
+    border: none !important;
+}
+
+#divdropdown {
+    position: absolute;
+    visibility: hidden;
+    z-index: 2502;
+}
+
+.ndp-header {
+    margin-bottom: 7px;
+}
+
+#clear,
+#clear1 {
+    text-transform: uppercase;
+}
+
+/*.nepcal {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/><path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/> </svg>');
+    background-repeat: no-repeat;
+    background-position: right center;
+}*/

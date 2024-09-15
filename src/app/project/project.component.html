@@ -1,0 +1,296 @@
+<div class="row col-md-12">
+<div class="row col-md-6 justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+         Add Project
+        </div>
+        <div class="card-body mt-3">
+          <form
+          class="needs-validation"
+          [formGroup]="projectCycleForm"
+          (ngSubmit)="projectCycleFormSubmit()"
+        >
+          <div class="row g-3">
+            <input type="hidden" formControlName="id" />
+
+            <div class="col-6" >
+              <label class="form-label req">Parent </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="parentid" [ngClass]="vs.getControlClass(projectCycleForm.controls['parentid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of projects " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['parentid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["parentid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Client </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="clientid" [ngClass]="vs.getControlClass(projectCycleForm.controls['clientid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of clients " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['clientid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["clientid"]) }}
+                </div>
+              </div>
+            </div>
+           
+           
+            <div class="col-6" >
+              <label class="form-label req">Project Name</label>
+              <div class="has-validation">
+                <input type="text" class="form-control " formControlName="projectname" [ngClass]="vs.getControlClass(projectCycleForm.controls['projectname'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['projectname'])">
+                  {{ vs.getMessage(projectCycleForm.controls["projectname"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Palika </label>
+              <div class="has-validation">
+                <ng-select  formControlName="palikaid" >
+                  <ng-option  [value]="0">Select One</ng-option>
+                  <ng-option *ngFor="let lg of palika" [value]="lg.id">{{lg.nameen}}</ng-option>
+              </ng-select>
+             
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['palikaid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["palikaid"]) }}
+                </div>
+              </div>
+            </div>
+    
+            
+
+            <div class="col-6" >
+              <label class="form-label ">Description</label>
+              <div class="has-validation">
+                <textarea  class="form-control " formControlName="description" [ngClass]="vs.getControlClass(projectCycleForm.controls['description'])"></textarea>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['description'])">
+                  {{ vs.getMessage(projectCycleForm.controls["description"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Start Date</label>
+              <div class="has-validation">
+                <input type="date" class="form-control " formControlName="startdate" [ngClass]="vs.getControlClass(projectCycleForm.controls['startdate'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['startdate'])">
+                  {{ vs.getMessage(projectCycleForm.controls["startdate"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label ">End Date</label>
+              <div class="has-validation">
+                <input type="date" class="form-control " formControlName="enddate" [ngClass]="vs.getControlClass(projectCycleForm.controls['enddate'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['enddate'])">
+                  {{ vs.getMessage(projectCycleForm.controls["enddate"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Project Manager </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="project_manager" [ngClass]="vs.getControlClass(projectCycleForm.controls['project_manager'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['project_manager'])">
+                  {{ vs.getMessage(projectCycleForm.controls["project_manager"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label ">Project Stage </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="stageid" [ngClass]="vs.getControlClass(projectCycleForm.controls['stageid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of stages " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['stageid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["stageid"]) }}
+                </div>
+              </div>
+            </div>
+
+            
+
+            <div class="col-6" >
+              <label class="form-label req">Status</label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="status" [ngClass]="vs.getControlClass(projectCycleForm.controls['status'])">
+                  <option value="1">Approved</option>
+                  <option value="0">Disabled</option>
+                  </select>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['status'])">
+                  {{ vs.getMessage(projectCycleForm.controls["status"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Is completed?</label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="iscompleted" [ngClass]="vs.getControlClass(projectCycleForm.controls['iscompleted'])">
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                  </select>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['iscompleted'])">
+                  {{ vs.getMessage(projectCycleForm.controls["iscompleted"]) }}
+                </div>
+              </div>
+            </div>
+
+         
+          </div>
+    
+          <br/>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-success btn-sm" type="submit">Save </button>
+              &nbsp; &nbsp;
+              <button
+                class="btn btn-danger btn-sm"
+                type="button"
+                (click)="resetForm()"
+              >
+              रद्द गर्ने 
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      </div>
+  
+    
+    </div>
+  </div>
+
+
+
+  <div class="row col-md-6 justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+         Project  List
+        </div>
+        <div class="card-body mt-3">
+
+          <form class="form-srch" [formGroup]="srchForm">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search.."
+                id="srch_term"
+                name="srch_term"
+                formControlName="srch_term"
+                (keyup.enter)="search()"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="search()"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+
+          <table class="display responsive-table w-100 table table-striped  datatable">
+            <!--table-borderless-->
+            <thead>
+              <tr>
+                <th scope="col">Project Name</th>
+                <th scope="col">Client  </th>
+                <th scope="col">Project Manager</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of lists; let i = index">
+                <td>{{ item.projectname }}</td>
+                <td>{{ item.clientname }}</td>
+                <td>{{ item.fullname }}</td>
+              
+                <td style="width: 120px;">
+                  <button class="btn btn-success btn-sm" (click)="getUpdateItem(item.id)" href="javascript:void(0)"
+                    ><i class="bi bi-pencil-square"></i
+                  ></button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-danger btn-sm" (click)="deleteItem(item.id)"
+                    ><i
+                      class="bi bi-trash3"
+                      style="cursor: pointer"
+                    ></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <div class="col-6 text-start">
+              <pagination
+                [rotate]="true"
+                [maxSize]="5"
+                [totalItems]="pagination.total"
+                [(ngModel)]="pagination.currentPage"
+                [boundaryLinks]="true"
+                [itemsPerPage]="pagination.perPage"
+                (pageChanged)="paginatedData($event)"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+              ></pagination>
+            </div>
+  
+            <div class="col-6 text-end">
+              <form [formGroup]="srchForm">
+                <div class="row" style="float: right">
+                  <div class="col-md-12 smallbr">
+                    Entries
+                    <select
+                      name="entries"
+                      id="entries"
+                      formControlName="entries"
+                      (change)="search()"
+                    >
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+ 
+  

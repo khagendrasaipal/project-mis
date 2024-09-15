@@ -1,0 +1,64 @@
+<!-- <div class="pagetitle">
+    <h1>Blank Page</h1>
+    <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+  </div> -->
+
+  <div class="text-center"><h3>{{pdetails.name}}</h3>
+    <p>{{pdetails.description}}</p>
+  </div>
+<button class="btn btn-primary" (click)="gotohome()">Home</button>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-4" >
+
+        <div class="card" style="cursor: pointer;" (click)="getActvityview()">
+          <div class="card-body">
+            <h5 class="card-title"> <i class="bi bi-boxes"></i> Activity </h5>
+            <!-- <p style="font-weight: bolder;" *ngFor=" let item of parents">{{item.name}}
+              <li *ngFor=" let items of item.children">
+                  {{items.name}}
+              </li> -->
+              <!-- <p> -->
+                <ul>
+                  <ng-container *ngFor="let item of parents">
+                    <li>{{ item.name }}</li>
+                    <ul *ngIf="item.children && item.children.length > 0">
+                      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+                    </ul>
+                  </ng-container>
+                </ul>
+                
+                <ng-template #recursiveList let-items>
+                  <ng-container *ngFor="let item of items">
+                    <li>{{ item.name }}</li>
+                    <ul *ngIf="item.children && item.children.length > 0">
+                      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+                    </ul>
+                  </ng-container>
+                </ng-template>
+            <!-- </p> -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6" >
+
+        <div class="card">
+          <div class="card-body" style="cursor: pointer;" (click)="getMessageview()">
+            <h5 class="card-title"><i class="bi bi-messenger"></i> Comments</h5>
+            <p *ngFor=" let item of msgs"><a style="color: blue;">{{item.fullname}}</a> : {{item.name}}</p>
+          </div>
+        </div>
+
+      </div>
+
+
+      
+    </div>
+  </section>

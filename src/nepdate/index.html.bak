@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title> Nepali Datepicker Example </title>
+		<!-- Author: Lifecracker87 Url:https://github.com/lifecracker87/nepali-date-picker -->
+		<link rel="stylesheet" type="text/css" media="all" href="nepali-date-picker.css" />
+	</head>
+	<body>
+		<input type="text" id="pick-date-example">
+		<script src="nepali-date-picker.js"></script>
+		<script>
+			NepDatePicker.createCalendar(document.getElementById('pick-date-example'));
+		</script>
+	</body>
+</html>

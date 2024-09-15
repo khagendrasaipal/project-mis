@@ -1,0 +1,297 @@
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <!-- <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active">Dashboards</li>
+      </ol>
+    </nav> -->
+</div>
+
+<section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col">
+        <div class="row">
+
+          <!-- Sales Card -->
+          <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total  Projects <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-database"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.total_project}}</h6>
+                    
+                  </div>
+                  
+                </div>
+                <li *ngFor="let items of pdetails"> {{items.name}}</li>
+                <div *ngIf="!isP" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="getprojectDetails(1)">View Details</a></div>
+                <div *ngIf="isP" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="hideprojectDetails(1)">Hide Details</a></div>  
+              </div>
+
+            </div>
+          </div>
+          <!-- End Sales Card -->
+
+          <!-- Revenue Card -->
+         
+
+          <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Completed Projects <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-check2-square"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.completed}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+                <li *ngFor="let items of cpdetails"> {{items.name}}</li>
+                <div *ngIf="!isCP" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="getprojectDetails(2)">View Details</a></div>
+                <div *ngIf="isCP" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="hideprojectDetails(2)">Hide Details</a></div>  
+              
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Ongoing Projects <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-clipboard2-data"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.ongoing}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+
+                <li *ngFor="let items of cpodetails"> {{items.name}}</li>
+                <div *ngIf="!isCPO" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="getprojectDetails(3)">View Details</a></div>
+                <div *ngIf="isCPO" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="hideprojectDetails(3)">Hide Details</a></div>  
+              
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Assigned  Activity <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-boxes"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.total_act}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+
+                <!-- <li *ngFor="let items of adetails"> {{items.name}}</li>
+                <div *ngIf="!isA" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="getprojectDetails(4)">View Details</a></div>
+                <div *ngIf="isA" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="hideprojectDetails(4)">Hide Details</a></div>  
+               -->
+              </div>
+
+            </div>
+          </div>
+          <!-- End Sales Card -->
+
+          <!-- Revenue Card -->
+         
+
+          <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Completed  Activity <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-bounding-box"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.act_comp}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+<!-- 
+                <li *ngFor="let items of cadetails"> {{items.name}}</li>
+                <div *ngIf="!isCA" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="getprojectDetails(5)">View Details</a></div>
+                <div *ngIf="isCA" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="hideprojectDetails(5)">Hide Details</a></div>  
+               -->
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Ongoing  Activity <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-bootstrap-reboot"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.act_on}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+<!-- 
+                <li *ngFor="let items of oadetails"> {{items.name}}</li>
+                <div *ngIf="!isOA" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="getprojectDetails(6)">View Details</a></div>
+                <div *ngIf="isOA" style="float:right" class="text-success small pt-1 fw-bold"><a href="javascript::void(0)" (click)="hideprojectDetails(6)">Hide Details</a></div>  
+               -->
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-md-4" style="display: none;">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Clients <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.totalclient}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-md-4" style="display: none;">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Staff <span></span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-person"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ddata.totalstaff}}</h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Revenue Card -->
+
+          <!-- Customers Card -->
+        <!-- <div class="col-xxl-4 col-xl-12">
+
+            <div class="card info-card customers-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Tax <span></span></h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>0</h6>
+                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div> -->
+
+          <!-- Recent Sales -->
+          <!-- <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <h5 class="card-title">Recent Payments</h5>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Sn.</th>
+                      <th scope="col">Ref. Id</th>
+                      <th scope="col">Local Level</th>
+                      <th scope="col">Particular</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><a href="#">1</a></th>
+                      <th scope="row">2457</th>
+                      <td>Brandon Jacob</td>
+                      <td><a href="#" class="text-primary">At praesentium minu</a></td>
+                      <td>$64</td>
+                      <td><span class="badge bg-success">Approved</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">2</a></th>
+                      <th scope="row"><a href="#">#2147</a></th>
+                      <td>Bridie Kessler</td>
+                      <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                      <td>$47</td>
+                      <td><span class="badge bg-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">3</a></th>
+                      <th scope="row"><a href="#">#2049</a></th>
+                      <td>Ashleigh Langosh</td>
+                      <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
+                      <td>$147</td>
+                      <td><span class="badge bg-success">Approved</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">4</a></th>
+                      <th scope="row"><a href="#">#2644</a></th>
+                      <td>Angus Grady</td>
+                      <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
+                      <td>$67</td>
+                      <td><span class="badge bg-danger">Rejected</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">5</a></th>
+                      <th scope="row"><a href="#">#2644</a></th>
+                      <td>Raheem Lehner</td>
+                      <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
+                      <td>$165</td>
+                      <td><span class="badge bg-success">Approved</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,258 @@
+export class UnitConvert {
+  Khetmuri: number = 12718.42618;
+  Bigha: number = 6772.631616;
+  Kattha: number = 338.6315808;
+  Dhur: number = 16.93157904;
+  Ropani: number = 508.737047;
+  Aana: number = 31.79606544;
+  Paisa: number = 7.94901636;
+  Dam: number = 1.98725409;
+  Sqfeet: number = 0.09290304;
+  Sqmeter: number = 1;
+  Hector: number = 10000;
+
+  ropani: number = 41;
+  aana: number = 134;
+  paisa: number = 135;
+  dam: number = 136;
+  bigha: number = 77;
+  kattha: number = 78;
+  dhur: number = 79;
+  sqmeter: number = 36;
+  sqfeet: number = 80;
+  khetmuri: number = -2;
+  hector: number = 42;
+
+  sqMeterRate(fromUnit: string): number {
+    let ret: number = 0.00;
+
+    if (fromUnit == "41") {
+      // Ropani
+      ret = this.Ropani;
+    } else if (fromUnit == "134") {
+      // Aana
+      ret = this.Aana;
+    } else if (fromUnit == "135") {
+      // Paisa
+      ret = this.Paisa;
+    } else if (fromUnit == "136") {
+      // Dam
+      ret = this.Dam;
+    } else if (fromUnit == "77") {
+      // Bigha
+      ret = this.Bigha;
+    } else if (fromUnit == "78") {
+      // Kattha
+      ret = this.Kattha;
+    } else if (fromUnit == "79") {
+      // Dhur
+      ret = this.Dhur;
+    } else if (fromUnit == "36") {
+      // Square Meter
+      ret = this.Sqmeter;
+    } else if (fromUnit == "80") {
+      // Square Foot
+      ret = this.Sqfeet;
+    }
+
+    return ret;
+  }
+
+  toSqmeter(fromValue: any, fromUnit: any): number {
+    let ret: number = 0.00;
+    let fromValueNum: number = 0.00;
+    let fromUnitNum: number = 0.00;
+
+    try {
+      fromValueNum = parseFloat(fromValue);
+    } catch (err) {
+      fromValueNum = 0;
+    }
+
+    try {
+      fromUnitNum = parseInt(fromUnit);
+    } catch (err) {
+      fromUnitNum = 0;
+    }
+
+    if (fromUnitNum == this.khetmuri) {
+      ret = fromValueNum * this.Khetmuri;
+    } else if (fromUnitNum == this.bigha) {
+      ret = fromValueNum * this.Bigha;
+    } else if (fromUnitNum == this.kattha) {
+      ret = fromValueNum * this.Kattha;
+    } else if (fromUnitNum == this.dhur) {
+      ret = fromValueNum * this.Dhur;
+    } else if (fromUnitNum == this.ropani) {
+      ret = fromValueNum * this.Ropani;
+    } else if (fromUnitNum == this.aana) {
+      ret = fromValueNum * this.Aana;
+    } else if (fromUnitNum == this.paisa) {
+      ret = fromValueNum * this.Paisa;
+    } else if (fromUnitNum == this.dam) {
+      ret = fromValueNum * this.Dam;
+    } else if (fromUnitNum == this.sqfeet) {
+      ret = fromValueNum * this.Sqfeet;
+    } else if (fromUnitNum == this.sqmeter) {
+      ret = fromValueNum * this.Sqmeter;
+    } else if (fromUnitNum == this.hector) {
+      ret = fromValueNum * this.Hector;
+    }
+
+    return ret;
+  }
+
+  toKhetmuri(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Khetmuri;
+    return ret;
+  }
+
+  toBigha(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Bigha;
+    return ret;
+  }
+
+  toKattha(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Kattha;
+    return ret;
+  }
+
+  toDhur(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Dhur;
+    return ret;
+  }
+
+  toRopani(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Ropani;
+    return ret;
+  }
+
+  toAana(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Aana;
+    return ret;
+  }
+
+  toPaisa(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Paisa;
+    return ret;
+  }
+
+  toDam(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Dam;
+    return ret;
+  }
+
+  toSqfeet(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Sqfeet;
+    return ret;
+  }
+
+  toHector(fromValue: number, fromUnit: number): number {
+    let ret: number = 0.00;
+    fromValue = this.toSqmeter(fromValue.toString(), fromUnit.toString());
+    ret = fromValue / this.Hector;
+    return ret;
+  }
+
+  ropaniToSqmeter(inputValue: string): string {
+    let ret: number = 0.00;
+    let a: string[] = inputValue.split(":");
+    if (a.length < 4) {
+      return ret.toFixed(4);
+    }
+    ret += this.toSqmeter(parseFloat(a[0]), this.ropani);
+    ret += this.toSqmeter(parseFloat(a[1]), this.aana);
+    ret += this.toSqmeter(parseFloat(a[2]), this.paisa);
+    ret += this.toSqmeter(parseFloat(a[3]), this.dam);
+
+    return ret.toFixed(4);
+  }
+
+  bighaToSqmeter(inputValue: string): string {
+    let ret: number = 0.00;
+    let a: string[] = inputValue.split(":");
+    if (a.length < 3) {
+      return ret.toFixed(4);
+    }
+    ret += this.toSqmeter(parseFloat(a[0]), this.bigha);
+    ret += this.toSqmeter(parseFloat(a[1]), this.kattha);
+    ret += this.toSqmeter(parseFloat(a[2]), this.dhur);
+
+    return ret.toFixed(4);
+  }
+
+  sqmeterToBigha(sqValue: number): string {
+    let ret: string = "0:0:0";
+    let B: number = this.toBigha(sqValue, this.sqmeter);
+    let b: number = parseInt(B.toString());
+    B = B - b;
+
+    let K: number = 0.00;
+    let k: number = 0;
+    let D: number = 0.00;
+    let d: number = 0;
+
+    if (B > 0) {
+      K = parseFloat(this.toKattha(B, this.bigha).toString());
+      k = parseInt(K.toString());
+      K = K - k;
+    }
+    if (K > 0) {
+      D = parseFloat(this.toDhur(K, this.kattha).toString());
+      d = parseInt(D.toString());
+    }
+
+    ret = b + ":" + k + ":" + d;
+    return ret;
+  }
+
+  sqmeterToRopani(sqValue: number): string {
+    let ret: string = "0:0:0:0";
+    let R: number = parseFloat(this.toRopani(sqValue, this.sqmeter).toString());
+    let r: number = parseInt(R.toString());
+    R = R - r;
+
+    let A: number = 0.00;
+    let a: number = 0;
+    let P: number = 0.00;
+    let p: number = 0;
+    let D: number = 0.00;
+    let d: number = 0;
+
+    if (R > 0) {
+      A = parseFloat(this.toAana(R, this.ropani).toString());
+      a = parseInt(A.toString());
+      A = A - a;
+    }
+    if (A > 0) {
+      P = parseFloat(this.toPaisa(A, this.aana).toString());
+      p = parseInt(P.toString());
+      P = P - p;
+    }
+    if (P > 0) {
+      D = parseFloat(this.toDam(P, this.paisa).toString());
+      d = parseInt(D.toString());
+    }
+
+    ret = r + ":" + a + ":" + p + ":" + d;
+    return ret;
+  }
+}  //end of unitConvert

@@ -1,0 +1,19 @@
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@import 'assets/style.scss';
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.req::after{
+    content: " *";
+    color: red;
+}
+
+
+
+  

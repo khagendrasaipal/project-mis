@@ -1,0 +1,238 @@
+<!-- <div class="pagetitle">
+    <h1>Blank Page</h1>
+    <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+  </div> -->
+
+  <div class="text-center">
+    <h5>{{pdetails.name}}</h5>
+    <h3>Message Board</h3>
+    <!-- <p>{{pdetails.description}}</p> -->
+  </div>
+<button class="btn btn-primary" (click)="gotohome()">Home</button>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12" >
+
+        <div class="card">
+          <div class="card-body" >
+            <h5 class="card-title" (click)="sendReply(0,0);toggleForm(msgs,0,0)" style="cursor: pointer;"> <i class="bi bi-clipboard-plus"  title="Add new Message"></i> Add comments </h5>
+           
+            <form *ngIf="mainForm">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <!-- Activity Name: <input type="text" placeholder="Enter activity name.."><br>
+                     Description: <input type="text" placeholder="Enter descriptions.."><br> -->
+
+                     <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitOtp()" novalidate>
+                      <div class="row col-md-12">
+                        <div class="col-md-6">
+                          <label for="otp" class="form-label">Content </label>
+                          <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForm.controls['content'])"></textarea>
+                          <div [ngClass]="vs.getMessageClass(otpForm.controls['content'])">
+                              {{ vs.getMessage(otpForm.controls["content"]) }}
+                          </div>
+                        </div>
+
+                        <div class="col-6" *ngIf="sbox">
+                          <label class="form-label "> Activity </label>
+                          <div class="has-validation">
+                            <select class="form-control form-select" formControlName="activityid" [ngClass]="vs.getControlClass(otpForm.controls['activityid'])">
+                            <option value="">Select one</option>  
+                            <option *ngFor=" let item of activities " [value]="item.id">{{item.name}} </option>
+                            </select>
+                            <div [ngClass]="vs.getMessageClass(otpForm.controls['activityid'])">
+                              {{ vs.getMessage(otpForm.controls["activityid"]) }}
+                            </div>
+                          </div>
+                        </div>
+
+
+                        </div>
+                        <button class="btn btn-success btn-sm col-1" type="submit">Submit</button>
+                        </form>
+                        </div>
+                        </div>
+                        </form>
+            <!-- <nav *ngFor=" let item of msgs" style="--bs-breadcrumb-divider: '>';">
+              <ol class="breadcrumb" style="font-weight: bolder;font-size: 18px;">
+                <li class="breadcrumb-item"><a >{{item.created_at}}</a></li>
+                <li class="breadcrumb-item"><a >{{item.fullname}}</a></li>
+                <li class="breadcrumb-item active" style="font-weight: bolder;">{{item.name}}  <i style="cursor: pointer;color: #03a9f4;" (click)="sendReply(item.id,item.activityid)" class="bi bi-reply" title="Add Reply">reply</i></li>
+              </ol>
+            </nav> -->
+
+
+            <ul>
+              <nav *ngFor=" let item of msgs" style="--bs-breadcrumb-divider: '>';">
+                <ul class="breadcrumb" style="font-weight: bolder;font-size: 18px;">
+                  <li style=" list-style-type: disc" class="breadcrumb-item"><a >{{item.created_at}}</a></li>
+                  <li class="breadcrumb-item"><a >{{item.fullname}}</a></li>
+                  <li class="breadcrumb-item active" style="font-weight: bolder;">{{item.name}} 
+                     <i style="cursor: pointer;color: #03a9f4;" (click)="sendReply(item.id,item.activityid);toggleForm(item,item.id,item.activityid)" class="bi bi-reply" title="Add Reply">reply</i></li>
+                    
+                                
+                </ul>
+
+                <form *ngIf="item.showForm">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"></h5>
+                      <!-- Activity Name: <input type="text" placeholder="Enter activity name.."><br>
+                         Description: <input type="text" placeholder="Enter descriptions.."><br> -->
+  
+                         <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitOtp()" novalidate>
+                          <div class="row col-md-12">
+                            <div class="col-md-6">
+                              <label for="otp" class="form-label">Content</label>
+                              <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForm.controls['content'])"></textarea>
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['content'])">
+                                  {{ vs.getMessage(otpForm.controls["content"]) }}
+                              </div>
+                            </div>
+
+                            <div class="col-6" *ngIf="sbox">
+                              <label class="form-label "> Activity </label>
+                              <div class="has-validation">
+                                <select class="form-control form-select" formControlName="activityid" [ngClass]="vs.getControlClass(otpForm.controls['activityid'])">
+                                <option value="">Select one</option>  
+                                <option *ngFor=" let item of activities " [value]="item.id">{{item.name}} </option>
+                                </select>
+                                <div [ngClass]="vs.getMessageClass(otpForm.controls['activityid'])">
+                                  {{ vs.getMessage(otpForm.controls["activityid"]) }}
+                                </div>
+                              </div>
+                            </div>
+
+
+                            </div>
+                            <button class="btn btn-success btn-sm col-1" type="submit">Submit</button>
+                            </form>
+                            </div>
+                            </div>
+                            </form>
+                <ul *ngIf="item.children && item.children.length > 0">
+                  <nav *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></nav>
+                </ul>
+              </nav>
+            </ul>
+            
+            <ng-template #recursiveList let-items>
+              <nav *ngFor="let item of items" style="--bs-breadcrumb-divider: '>';">
+                <ol class="breadcrumb" style="font-weight: bolder;font-size: 18px;">
+                  <li style=" list-style-type: circle" class="breadcrumb-item"><a >{{item.created_at}}</a></li>
+                  <li class="breadcrumb-item"><a >{{item.fullname}}</a></li>
+                  <li class="breadcrumb-item active" style="font-weight: bolder;">{{item.name}} 
+                     <i style="cursor: pointer;color: #03a9f4;" (click)="sendReply(item.id,item.activityid);toggleForm(item,item.id,item.activityid)" class="bi bi-reply" title="Add Reply">reply</i></li>
+                </ol>
+                <form *ngIf="item.showForm">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"></h5>
+                      <!-- Activity Name: <input type="text" placeholder="Enter activity name.."><br>
+                         Description: <input type="text" placeholder="Enter descriptions.."><br> -->
+  
+                         <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitOtp()" novalidate>
+                          <div class="row col-md-12">
+                            <div class="col-md-6">
+                              <label for="otp" class="form-label">Content</label>
+                              <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForm.controls['content'])"></textarea>
+                              <div [ngClass]="vs.getMessageClass(otpForm.controls['content'])">
+                                  {{ vs.getMessage(otpForm.controls["content"]) }}
+                              </div>
+                            </div>
+
+                            <div class="col-6" *ngIf="sbox">
+                              <label class="form-label "> Activity </label>
+                              <div class="has-validation">
+                                <select class="form-control form-select" formControlName="activityid" [ngClass]="vs.getControlClass(otpForm.controls['activityid'])">
+                                <option value="">Select one</option>  
+                                <option *ngFor=" let item of activities " [value]="item.id">{{item.name}} </option>
+                                </select>
+                                <div [ngClass]="vs.getMessageClass(otpForm.controls['activityid'])">
+                                  {{ vs.getMessage(otpForm.controls["activityid"]) }}
+                                </div>
+                              </div>
+                            </div>
+
+
+                            </div>
+                            <button class="btn btn-success btn-sm col-1" type="submit">Submit</button>
+                            </form>
+                            </div>
+                            </div>
+                            </form>
+                <ul *ngIf="item.children && item.children.length > 0">
+                  <nav *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></nav>
+                </ul>
+              </nav>
+            </ng-template>
+            <!-- <div class="activity">
+            <div *ngFor=" let item of msgs" class="activity-item d-flex">
+              <div class="activite-label">{{item.fullname}}</div>
+              <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+              <div class="activity-content">
+                {{item.name}}
+              </div>
+            </div>
+            </div> -->
+
+            <!-- <p *ngFor=" let item of msgs"><a style="color: blue;">{{item.fullname}}</a> : {{item.name}}  {{item.created_at}}</p> -->
+          </div>
+        </div>
+
+      </div>
+
+     
+
+
+      
+    </div>
+  </section>
+
+  <ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Comments</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitOtp()" novalidate>
+	<div class="row col-md-12">
+    <div class="col-md-12">
+		<label for="otp" class="form-label">Content</label>
+        <textarea   class="form-control form-control-sm" id="content" formControlName="content" [ngClass]="vs.getControlClass(otpForm.controls['content'])"></textarea>
+        <div [ngClass]="vs.getMessageClass(otpForm.controls['content'])">
+            {{ vs.getMessage(otpForm.controls["content"]) }}
+        </div>
+        </div>
+        <div class="col-6" *ngIf="sbox">
+          <label class="form-label "> Activity </label>
+          <div class="has-validation">
+            <select class="form-control form-select" formControlName="activityid" [ngClass]="vs.getControlClass(otpForm.controls['activityid'])">
+            <option value="">Select one</option>  
+            <option *ngFor=" let item of activities " [value]="item.id">{{item.name}} </option>
+            </select>
+            <div [ngClass]="vs.getMessageClass(otpForm.controls['activityid'])">
+              {{ vs.getMessage(otpForm.controls["activityid"]) }}
+            </div>
+          </div>
+        </div>
+             
+
+                
+    </div>
+    <div class="row">
+      <div class="col-12"></div>
+    </div>
+    <button class="btn btn-success btn-sm " type="submit">Submit</button>
+</form>
+    </div>
+
+  </ng-template>

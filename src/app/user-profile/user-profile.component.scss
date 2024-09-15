@@ -1,0 +1,24 @@
+.hover-effect {
+    // transition: ease .2s;
+    outline: 2px solid #71b7d3  !important;
+    
+}
+
+.img-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 80%;
+    right: 10px;
+    transform: translate(50%, -50%);
+    /* Adjust the positioning and styling of the icon as needed */
+  }
+
+  .ico-display{
+    display: block !important;
+  }
+  

@@ -1,0 +1,197 @@
+<div class="pagetitle">
+    <h1>प्रोफाइल </h1>
+    <!-- <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Users</li>
+        <li class="breadcrumb-item active">Profile</li>
+      </ol>
+    </nav> -->
+  </div><!-- End Page Title -->
+
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-4">
+
+        <div class="card">
+          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+            <div class="img-container"  (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" >
+              <img *ngIf="userinfo?.photo" src="{{baseurl}}{{userinfo?.photo}}" alt="Profile" class="rounded-circle" [ngClass]="{'hover-effect': isHovered}">
+              <img *ngIf="! userinfo?.photo" src="{{baseurl}}images/sample.png" title="Go to Edit Profile to upload photo" alt="Profile" class="rounded-circle" [ngClass]="{'hover-effect': isHovered}">
+              <!-- <span class="icon"><i class="bi bi-camera-fill" style="font-size: larger;"></i></span> -->
+              <input #fileInput type="file" style="display: none;" />
+            </div>
+            <h2>{{userinfo?.fullname}}</h2>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xl-8">
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <tabset class="nav-tabs-bordered">
+              <tab heading="Overview">
+                <div class="fade show profile-overview" id="profile-overview">
+
+                  <h5 class="card-title">Profile Details</h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-9 col-md-8">{{userinfo?.fullname}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Mobile</div>
+                    <div class="col-lg-9 col-md-8">{{userinfo?.mobile}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{userinfo?.email}}</div>
+                  </div>
+
+                  <!-- <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
+                    <div class="col-lg-9 col-md-8">{{userinfo?.dob}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Gender</div>
+                    <div class="col-lg-9 col-md-8">{{userinfo?.genders}}</div>
+                  </div> -->
+
+
+
+                </div>
+              </tab>
+              <!-- <tab heading="Edit Profile">
+                <div class="show fade profile-edit pt-3" id="profile-edit">
+
+                  <form [formGroup]="userProfileForm" (ngSubmit)="userProfileFormSubmit()">
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label" >Full Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" formControlName="fullname" value="{{userinfo?.fullname}}">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="company" type="date"  class="form-control" formControlName="dob" value="{{userinfo?.dob}}">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Gender</label>
+                      <div class="col-md-8 col-lg-9">
+                        <select class="form-control" formControlName="gender">
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                          <option value="3">Sexual Minority</option>
+                        </select>
+
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Photo</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="company" type="file" id="pfile"  class="form-control" formControlName="photo" >
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form>
+
+                </div>
+              </tab> -->
+              <!-- <tab heading="Settings" style="display: none;">
+                <div class="show fade pt-3" id="profile-settings">
+
+                  <form>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                      <div class="col-md-8 col-lg-9">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                          <label class="form-check-label" for="changesMade">
+                            Changes made to your account
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                          <label class="form-check-label" for="newProducts">
+                            Information on new products and services
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="proOffers">
+                          <label class="form-check-label" for="proOffers">
+                            Marketing and promo offers
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                          <label class="form-check-label" for="securityNotify">
+                            Security alerts
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form>
+                </div>
+              </tab> -->
+              <tab heading="Change Password">
+                <div class="fade show pt-3" id="profile-change-password">
+                <!-- Change Password Form -->
+                <form [formGroup]="passwordForm" (ngSubmit)="passwordFormSubmit()">
+
+                  <div class="row mb-3">
+                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="password" type="password" formControlName="currentPassword" class="form-control" id="currentPassword">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="newpassword" type="password" formControlName="password" class="form-control" id="newPassword" [ngClass]="vs.getControlClass(passwordForm.controls['password'])">
+                      <div [ngClass]="vs.getMessageClass(passwordForm.controls['password'])">{{ vs.getMessage(passwordForm.controls["password"]) }}</div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="renewpassword" type="password" formControlName="cpassword" class="form-control" id="renewPassword" [ngClass]="vs.getControlClass(passwordForm.controls['cpassword'])">
+                      <div [ngClass]="vs.getMessageClass(passwordForm.controls['cpassword'])">{{ vs.getMessage(passwordForm.controls["cpassword"]) }}</div>
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                  </div>
+                </form><!-- End Change Password Form -->
+
+              </div>
+              </tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

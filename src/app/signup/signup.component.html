@@ -1,0 +1,131 @@
+<section class="section register d-flex flex-column align-items-center justify-content-center py-2">
+    <div class="container">
+      <div class="d-flex justify-content-center py-4">
+        <div class="row text-center">
+          <div class="col-12">
+            <img
+        class="d-block mx-auto mt-2"
+        src="{{appConfig.baseUrl}}images/Emblem_of_Nepal.svg"
+        alt=""
+        height="70"
+      />
+          </div>
+          <div class="col-12"><h6 class="mb-1" style="font-size: 14px; color: #012970;margin-top: 2px;">
+            <b>महालेखा नियन्त्रक कार्यालय</b>
+          </h6></div>
+          <div class="col-12"><h6 class="mb-1" style="font-size: 16px; color: #012970">
+            <!-- <b>स्थानीय तह संचितकोष व्यवस्थापन प्रणाली (<span style="color: red;"><b>S</b></span>u<span style="color: red;"><b>TRA</b></span>)</b> -->
+          </h6></div>
+          <div class="col-12"><h6 class="mb-2" style="font-size: 18px; color: #012970">
+            <b>Local Level Revenue Portal</b>
+          </h6></div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <!-- <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+          Infograhphics here
+        </div> -->
+        <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="pt-4 pb-2">
+                <h5 class="card-title text-center pb-0 fs-4">Signup your Account</h5>
+                <p class="text-center small">Enter following details to signup to the Revenue Portal</p>
+              </div>
+              <form class="row g-3 needs-validation" [formGroup]="signupForm" (ngSubmit)="submit()">
+                <div class="col-12">
+                  <div class="has-validation form-floating">
+                    <input type="text" name="fullname" class=" form-control" id="fullname" placeholder="" formControlName="fullname" [ngClass]="vs.getControlClass(signupForm.controls['fullname'])">
+                    <label for="fullname">Full Name</label>
+                    <div [ngClass]="vs.getMessageClass(signupForm.controls['fullname'])">{{ vs.getMessage(signupForm.controls["fullname"]) }}</div>
+                  </div>
+                </div>
+                <div class="col-12">
+
+                  <div class="has-validation form-floating">
+                    <input type="text" name="mobile" class=" form-control" id="mobile" placeholder="" formControlName="mobile" [ngClass]="vs.getControlClass(signupForm.controls['mobile'])">
+                    <label for="mobile">Mobile No.</label>
+                    <div [ngClass]="vs.getMessageClass(signupForm.controls['mobile'])">{{ vs.getMessage(signupForm.controls["mobile"]) }}</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="has-validation form-floating">
+                    <input type="text" name="email" class=" form-control" id="email" placeholder="" formControlName="email" [ngClass]="vs.getControlClass(signupForm.controls['email'])">
+                    <label for="email">Email</label>
+                    <div [ngClass]="vs.getMessageClass(signupForm.controls['email'])">{{ vs.getMessage(signupForm.controls["email"]) }}</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="has-validation form-floating">
+                    <input type="text" name="dob" class=" form-control" id="dob" placeholder="" formControlName="dob" [ngClass]="vs.getControlClass(signupForm.controls['dob'])">
+                    <label for="dob">Date of Birth in AD[YYYY-MM-DD]</label>
+                    <div [ngClass]="vs.getMessageClass(signupForm.controls['dob'])">{{ vs.getMessage(signupForm.controls["dob"]) }}</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" style="margin-right: 2rem;">Gender</label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="2" formControlName="gender">
+                    <label class="form-check-label" for="gender">Female</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="1" formControlName="gender">
+                    <label class="form-check-label" for="inlineRadio2">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="3" formControlName="gender">
+                    <label class="form-check-label" for="inlineRadio2">Others</label>
+                  </div>
+                  <div [ngClass]="vs.getMessageClass(signupForm.controls['gender'])">{{ vs.getMessage(signupForm.controls["gender"]) }}</div>
+                </div>
+
+
+                <div class="col-12">
+                  <label for="yourPassword" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="password" placeholder="" formControlName="password" [ngClass]="vs.getControlClass(signupForm.controls['password'])">
+                  <div [ngClass]="vs.getMessageClass(signupForm.controls['password'])">{{ vs.getMessage(signupForm.controls["password"]) }}</div>
+                </div>
+                <div class="col-12">
+                  <label for="yourPassword" class="form-label">Confirm Password</label>
+                  <input type="password" name="cpassword" class="form-control" id="cpassword" placeholder="" formControlName="cpassword" [ngClass]="vs.getControlClass(signupForm.controls['cpassword'])">
+                  <div [ngClass]="vs.getMessageClass(signupForm.controls['cpassword'])">{{ vs.getMessage(signupForm.controls["cpassword"]) }}</div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary w-100" type="submit">Signup</button>
+                </div>
+                <div class="col-12">
+                  <p class="small mb-0">Already have account? <a  routerLink="/login">Go to Login</a></p>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">2FA: Enhancing Security</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <form class="row g-3 needs-validation" [formGroup]="otpForm" (ngSubmit)="submitOtp()" novalidate>
+	<div class="mb-4">
+		<label for="otp" class="form-label">Enter the authentication code sent to your registered mobile</label>
+        <input #otpInput autocomplete="off" type="text" class="form-control form-control-sm" id="otp" formControlName="otp" [ngClass]="vs.getControlClass(otpForm.controls['otp'])">
+        <div [ngClass]="vs.getMessageClass(otpForm.controls['otp'])">
+            {{ vs.getMessage(otpForm.controls["otp"]) }}
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12"><p *ngIf="display">Time Remaining: {{display}}</p></div>
+    </div>
+    <button class="btn btn-success btn-sm" type="submit">Submit</button>
+</form>
+    </div>
+
+  </ng-template>

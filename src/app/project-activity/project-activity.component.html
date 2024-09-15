@@ -1,0 +1,406 @@
+<div class="row col-md-12">
+<div class="row col-md-6 justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+         Add Project Activity
+        </div>
+        <div class="card-body mt-3">
+          <form
+          class="needs-validation"
+          [formGroup]="projectCycleForm"
+          (ngSubmit)="projectCycleFormSubmit()"
+        >
+          <div class="row g-3">
+            <input type="hidden" formControlName="id" />
+            <div class="col-6" >
+              <label class="form-label req">Project </label>
+              <div class="has-validation">
+                <select class="form-control form-select" #pid (change)="getParents(pid.value)" formControlName="projectid" [ngClass]="vs.getControlClass(projectCycleForm.controls['projectid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of projects " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['projectid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["projectid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label ">Parent Activity </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="parentid" [ngClass]="vs.getControlClass(projectCycleForm.controls['parentid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of parents " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['parentid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["parentid"]) }}
+                </div>
+              </div>
+            </div>
+
+           
+           
+           
+            <div class="col-6" >
+              <label class="form-label req">Activity Name</label>
+              <div class="has-validation">
+                <input type="text" class="form-control " formControlName="activityname" [ngClass]="vs.getControlClass(projectCycleForm.controls['activityname'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['activityname'])">
+                  {{ vs.getMessage(projectCycleForm.controls["activityname"]) }}
+                </div>
+              </div>
+            </div>
+    
+            
+
+            <div class="col-6" >
+              <label class="form-label ">Description</label>
+              <div class="has-validation">
+                <textarea  class="form-control " formControlName="description" [ngClass]="vs.getControlClass(projectCycleForm.controls['description'])"></textarea>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['description'])">
+                  {{ vs.getMessage(projectCycleForm.controls["description"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Activity Order</label>
+              <div class="has-validation">
+                <input type="number" class="form-control " formControlName="activityorder" [ngClass]="vs.getControlClass(projectCycleForm.controls['activityorder'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['activityorder'])">
+                  {{ vs.getMessage(projectCycleForm.controls["activityorder"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Stage </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="stageid" [ngClass]="vs.getControlClass(projectCycleForm.controls['stageid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of stages " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['stageid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["stageid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Start Date</label>
+              <div class="has-validation">
+                <input type="date" class="form-control " formControlName="startdate" [ngClass]="vs.getControlClass(projectCycleForm.controls['startdate'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['startdate'])">
+                  {{ vs.getMessage(projectCycleForm.controls["startdate"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label ">End Date</label>
+              <div class="has-validation">
+                <input type="date" class="form-control " formControlName="enddate" [ngClass]="vs.getControlClass(projectCycleForm.controls['enddate'])">
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['enddate'])">
+                  {{ vs.getMessage(projectCycleForm.controls["enddate"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Assign By </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="assignby" [ngClass]="vs.getControlClass(projectCycleForm.controls['assignby'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['assignby'])">
+                  {{ vs.getMessage(projectCycleForm.controls["assignby"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Assign  To </label>
+              <div class="has-validation">
+
+                <ng-select [items]="staffs" formControlName="assignto"  (change)="onItemSelectT($event)"
+                bindLabel="name"
+                bindValue="id"
+                [groupBy]="groupingHelper"
+                [multiple]="true"
+                [compareWith]="compareFn"
+                [(ngModel)]="selectedItemsT">
+             </ng-select>
+                <!-- <select class="form-control form-select" formControlName="assignto" [ngClass]="vs.getControlClass(projectCycleForm.controls['assignto'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                </select> -->
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['assignto'])">
+                  {{ vs.getMessage(projectCycleForm.controls["assignto"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Applies To</label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="appliesto" [ngClass]="vs.getControlClass(projectCycleForm.controls['appliesto'])">
+                  <option value="1">Own Project</option>
+                  <option value="2">Child</option>
+                  <option value="3">Both</option>
+                  </select>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['appliesto'])">
+                  {{ vs.getMessage(projectCycleForm.controls["appliesto"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Dependency</label>
+              <div class="has-validation">
+                <select class="form-control form-select" #dep (change)="dependencyCheck(dep.value)" formControlName="dependency" [ngClass]="vs.getControlClass(projectCycleForm.controls['dependency'])">
+                  <option value="1">No</option>
+                  <option value="2">Yes</option>
+                  <!-- <option value="3">Dependent</option> -->
+                  </select>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['dependency'])">
+                  {{ vs.getMessage(projectCycleForm.controls["dependency"]) }}
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6" *ngIf="isdep">
+              <label for="otp" class="form-label">Dependent Activity </label>
+             
+              <ng-select [items]="depacts" formControlName="dependent"  (change)="onItemSelectTss($event)"
+              bindLabel="name"
+              bindValue="id"
+              [groupBy]="groupingHelperss"
+              [multiple]="true"
+              [compareWith]="compareFnss"
+              [(ngModel)]="selectedItemsTss">
+           </ng-select>
+              <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['dependent'])">
+                {{ vs.getMessage(projectCycleForm.controls["dependent"]) }}
+              </div>
+            </div> -->
+
+            
+
+            <!-- <div class="multi-select-dropdown">
+              <label>Select Options:</label>
+              <div *ngFor="let option of options">
+                <input
+                  type="checkbox"
+                  [id]="'option-' + option.id"
+                  [checked]="isSelected(option.id)"
+                  (change)="toggleOption(option.id)"
+                />
+                <label [for]="'option-' + option.id">{{ option.name }}</label>
+            
+              
+                <div *ngIf="isSelected(option.id)">
+                  <label> {{ option.name }}:</label>
+                  <select
+                    (change)="onNestedSelect(option.id, $event)"
+                  >
+                    <option *ngFor="let nestedOption of secondLevelOptions[option.id.toString()]" [value]="nestedOption.id">
+                      {{ nestedOption.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div> -->
+            <div class="col-12 custom-dropdown" *ngIf="isdep">
+              <div class="dropdown-toggle col-12" (click)="toggleDropdown()">
+                {{ updateSelectedText() }}
+              </div>
+             
+              <div class="col-12 dropdown-menu" [ngClass]="{ 'show': dropdownVisible }">
+                <span style="float:right"><button
+                  class="btn btn-danger btn-sm"
+                  type="button"
+                  (click)="resetForms()"
+                >
+                Clear All Selection
+                </button></span>
+                <div class="dropdown-item" *ngFor="let option of depacts" [attr.data-value]="option.id">
+                  {{ option.name | titlecase }}
+                  <div class="radio-group">
+                    <label>
+                      <input type="radio" name="{{ option.name }}" value="2" (change)="onRadioChange(option.id, 2)"> Partial Dependency
+                    </label>
+                    <label>
+                      <input type="radio" name="{{ option.name }}" value="3" (change)="onRadioChange(option.id, 3)"> Full Dependency
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-6" ></div> -->
+
+            <div class="col-6" >
+              <label class="form-label req">Status</label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="status" [ngClass]="vs.getControlClass(projectCycleForm.controls['status'])">
+                  <option value="1">Not started</option>
+                  <option value="2">In Progress</option>
+                  <option value="3">Completed</option>
+                  </select>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['status'])">
+                  {{ vs.getMessage(projectCycleForm.controls["status"]) }}
+                </div>
+              </div>
+            </div>
+            
+            
+            
+         
+          </div>
+    
+          <br/>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-success btn-sm" type="submit">Save </button>
+              &nbsp; &nbsp;
+              <button
+                class="btn btn-danger btn-sm"
+                type="button"
+                (click)="resetForm()"
+              >
+              रद्द गर्ने 
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      </div>
+  
+    
+    </div>
+  </div>
+
+
+
+  <div class="row col-md-6 justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+         Project Activity List
+        </div>
+        <div class="card-body mt-3">
+
+          <form class="form-srch" [formGroup]="srchForm">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search.."
+                id="srch_term"
+                name="srch_term"
+                formControlName="srch_term"
+                (keyup.enter)="search()"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="search()"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+
+          <table class="display responsive-table w-100 table table-striped  datatable">
+            <!--table-borderless-->
+            <thead>
+              <tr>
+                <th scope="col">Project Name</th>
+                <th scope="col">Activity Name  </th>
+                <!-- <th scope="col">Assign by</th>
+                <th scope="col">Assign to</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of lists; let i = index">
+                <td>{{ item.projectname }}</td>
+                <td>{{ item.activityname }}</td>
+                <!-- <td>{{ item.assignby }}</td>
+                <td>{{ item.assignto }}</td> -->
+              
+                <td style="width: 120px;">
+                  <button class="btn btn-success btn-sm" (click)="getUpdateItem(item.id)" href="javascript:void(0)"
+                    ><i class="bi bi-pencil-square"></i
+                  ></button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-danger btn-sm" (click)="deleteItem(item.id)"
+                    ><i
+                      class="bi bi-trash3"
+                      style="cursor: pointer"
+                    ></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <div class="col-6 text-start">
+              <pagination
+                [rotate]="true"
+                [maxSize]="5"
+                [totalItems]="pagination.total"
+                [(ngModel)]="pagination.currentPage"
+                [boundaryLinks]="true"
+                [itemsPerPage]="pagination.perPage"
+                (pageChanged)="paginatedData($event)"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+              ></pagination>
+            </div>
+  
+            <div class="col-6 text-end">
+              <form [formGroup]="srchForm">
+                <div class="row" style="float: right">
+                  <div class="col-md-12 smallbr">
+                    Entries
+                    <select
+                      name="entries"
+                      id="entries"
+                      formControlName="entries"
+                      (change)="search()"
+                    >
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+ 
+  

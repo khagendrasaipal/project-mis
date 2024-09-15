@@ -1,0 +1,222 @@
+<div class="row col-md-12">
+<div class="row col-md-6 justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+         Add Comments
+        </div>
+        <div class="card-body mt-3">
+          <form
+          class="needs-validation"
+          [formGroup]="projectCycleForm"
+          (ngSubmit)="projectCycleFormSubmit()"
+        >
+          <div class="row g-3">
+            <input type="hidden" formControlName="id" />
+            <div class="col-6" >
+              <label class="form-label req">Project </label>
+              <div class="has-validation">
+                <select class="form-control form-select" #pid (change)="getActivity(pid.value)" formControlName="projectid" [ngClass]="vs.getControlClass(projectCycleForm.controls['projectid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of projects " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['projectid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["projectid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label "> Activity </label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="activityid" [ngClass]="vs.getControlClass(projectCycleForm.controls['activityid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of parents " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['activityid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["activityid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label req">Staff</label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="staffid" [ngClass]="vs.getControlClass(projectCycleForm.controls['staffid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of staffs " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['staffid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["staffid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label ">Reply on</label>
+              <div class="has-validation">
+                <select class="form-control form-select" formControlName="commentid" [ngClass]="vs.getControlClass(projectCycleForm.controls['commentid'])">
+                <option value="">Select one</option>  
+                <option *ngFor=" let item of comments " [value]="item.id">{{item.name}} </option>
+                </select>
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['commentid'])">
+                  {{ vs.getMessage(projectCycleForm.controls["commentid"]) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" >
+              <label class="form-label ">Content</label>
+              <div class="has-validation">
+                <textarea  class="form-control " formControlName="content" [ngClass]="vs.getControlClass(projectCycleForm.controls['content'])"></textarea>
+                  
+                <div [ngClass]="vs.getMessageClass(projectCycleForm.controls['content'])">
+                  {{ vs.getMessage(projectCycleForm.controls["content"]) }}
+                </div>
+              </div>
+            </div>
+
+            
+           
+
+           
+
+           
+          </div>
+    
+          <br/>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-success btn-sm" type="submit">Save </button>
+              &nbsp; &nbsp;
+              <button
+                class="btn btn-danger btn-sm"
+                type="button"
+                (click)="resetForm()"
+              >
+              रद्द गर्ने 
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      </div>
+  
+    
+    </div>
+  </div>
+
+
+
+  <div class="row col-md-6 justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+         Comments List
+        </div>
+        <div class="card-body mt-3">
+
+          <form class="form-srch" [formGroup]="srchForm">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search.."
+                id="srch_term"
+                name="srch_term"
+                formControlName="srch_term"
+                (keyup.enter)="search()"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="search()"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+
+          <table class="display responsive-table w-100 table table-striped  datatable">
+            <!--table-borderless-->
+            <thead>
+              <tr>
+                <th scope="col">Project </th>
+                <th scope="col">Activity   </th>
+                <th scope="col">Staff</th>
+                <th scope="col">Comments</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of lists; let i = index">
+                <td>{{ item.projectname }}</td>
+                <td>{{ item.activityname }}</td>
+                <td>{{ item.assignby }}</td>
+                <td>{{ item.content }}</td>
+              
+                <td style="width: 120px;">
+                  <button class="btn btn-success btn-sm" (click)="getUpdateItem(item.id)" href="javascript:void(0)"
+                    ><i class="bi bi-pencil-square"></i
+                  ></button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-danger btn-sm" (click)="deleteItem(item.id)"
+                    ><i
+                      class="bi bi-trash3"
+                      style="cursor: pointer"
+                    ></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <div class="col-6 text-start">
+              <pagination
+                [rotate]="true"
+                [maxSize]="5"
+                [totalItems]="pagination.total"
+                [(ngModel)]="pagination.currentPage"
+                [boundaryLinks]="true"
+                [itemsPerPage]="pagination.perPage"
+                (pageChanged)="paginatedData($event)"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+              ></pagination>
+            </div>
+  
+            <div class="col-6 text-end">
+              <form [formGroup]="srchForm">
+                <div class="row" style="float: right">
+                  <div class="col-md-12 smallbr">
+                    Entries
+                    <select
+                      name="entries"
+                      id="entries"
+                      formControlName="entries"
+                      (change)="search()"
+                    >
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+ 
+  
